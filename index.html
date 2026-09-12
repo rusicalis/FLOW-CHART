@@ -4,24 +4,251 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b2740">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="COTEC FLOW">
+  <meta name="apple-mobile-web-app-title" content="FLOWCHART">
+  <meta name="application-name" content="FLOWCHART">
   <meta name="format-detection" content="telephone=no">
-  <title>COTEC 개발 FLOW</title>
-  <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="apple-touch-icon" href="./icons/icon-192.png">
-  <link rel="icon" href="./icons/icon-192.png">
-  <link rel="stylesheet" href="./styles.css">
+  <title>FLOWCHART</title>
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22FLOWCHART%22%2C%22short_name%22%3A%22FLOWCHART%22%2C%22start_url%22%3A%22./%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23eef4f7%22%2C%22theme_color%22%3A%22%230b2740%22%7D">
+  <link rel="apple-touch-icon" href="data:image/png;base64,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">
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAL7klEQVR42u2deVCU9xnHv7vcp4iiiLBQD4Sioq7igQheiOIZj6Bpk9YajdPaicnYVK0zNY5JrRPTickQiY6x6VBbr8RE422MUo+IR+KFioWFgrKggrCAGLZ/ULDrvsCyvu/u+758PzOO8nt35eHZz/vs9933ZVfjGa43gxCVoGULCIUmhEITQqEJodCEQhNCoQmRG65yL7Bn2mE+SjIid/t4WdenkduJFQpMwRUvNCWm3KoQmiJTbFUITZEptiqEtldkw7EFtEMG6MZslr3YDhG6rSJTYHUK7gixJRfaVpkpcfuQW2qpJRW6NZkpcfuUW0qpJRHalqlMmTmxpRBbdKE5lYkzp7WWMhMpae0xF/slXNEmdEuFUWTS2rQWa1JrKTORw7QWa1JrnfUDEEotBc8tdHN7FmUmbZVajCmtpcxETVJrKTNRk9T8FSyiKuwSmtOZyHVKa6UujBBHutNmoXlxPnEU9rimldseRjilHTahhfYYykyklLqtU5qvchBVYbPQzM5ECVn6uSY04waRW5Zm5CDtL3IwbhClxA67JzTjBpFj7GDkIO0vchCiGqGZn4mScrRdE5r5mcg1RzNyEGZoQig0IRSaEApNKDQh6sBVCUXqMldYrRnmvQPWztoVJbRQQ5/dJtcGs3YKbVND5d5g1s4MbXdTxbgfa1d+7TwoJKpFVkI/797uzGnB2ik0Ieo9KBRrL9dlrsCXnfo6tPYpZVdYe+YKWRwgckITZmhCKDQhFJoQhQot1gGFow+qxPyeSq5dLmcMXdW2h8ZOmOeU7yvGqzRKrp0TWoK93JlTgrVTaELUL7S9e7scpgRrZ4ZusUm2ZDu5NZS1U2i7Giz335xg7RRacdOAtTNDE0KhCaHQhEITQqEJodCEUGhCKDSh0IRQaEIoNCEUmhAKTSg0IRSaEApNCIUmhEITCk0IhSaEQhNCoQmh0IRCE0KhCaHQhFBoQig0odCEUGhCKDQhFJpQaEIoNCEUmhAKTQiFJhSaEApNiMyQ9ecUxg/8KZLi+mP4gGjogoMQ2MEP3l4eqDRVo9j4AFdv5+PUhav4+uR5FBvvi98cFxfc3L8ZnTv6C27Xz16CW/lFkvzsCfoY7Et/26771j6uQ9DINMX3XzVCzxg7Ast+NQt9e4ULbg/w80WAny+ie4RhVvJIvPe7V7H3+Bm8tvpDVNfUilZHcvygZmUGgLmTkvB2eqbqppxc+q/4yOHt5YGMP/4W2959s9lmCuGi1WLG2BHw9/EStZ65k5Ja3J42MREajUY1Isut/4oW2t3NFTs2rETapERZ1BPg54uUkfoWbxMa3Bmj9H1VIbPc+q/4yLHhrYVI0McIbjt/5RY27diPrIvXYLxfDjdXVwR37oi4fpGYkjQUKQmD4aIVd9+clRwPD3e31qd4ahJOnP/BYX1asjYd2744ovr+K1roAVE98fMpYwS3rUnPxPqtu6wOem4bqnHbUITMfd8grFsQ1ix5GWaziHEj1TpunPshB3H9+lisTRs9DG/8OQOm6looFTn2X9GR4/cLZgtm0U92HrBqphAFxUb8YsV7KLn/UJR6eulCMKRvpNX66+9uwoOKSos1H29PTB09TNFP03Lrv6KF9nR3w+ihsVbrVaYap72CIDSdr97Ox5Xb+dh7/EybDx7ljBz7r2ihh/aPgpeHu9X6gaxslD+qcng9Go0GaSmjrNZ3Hc5q+PvQKattiYP7oXuXTooUWm79V3yGDg3uLLieffWWU+pJGBSDsG5BVuu7jzQIfTL7KowPyhHUscPTqaDV4MWJo7Bh2x7J69u4cjE2rlzc4m2W/ikDW3YfVGT/FT+hmztxYXxQLpu4celGLu4U3AUA/Fhfj8+PnrbpfkpAbv1XvNAayOfEhJenB6aNGdZs3Gia1s98DQB9IkIxMLqn4gSQU/9VIXRzk+D/n9IdxdTRQ+Hr7SUQN/5l8fXpy9cFr114KXW04gSQU/9VkaEL75YKrutjeju8lnkCr1Z8d+UmCoqNFmv19WZ8fvQ0FqelWqzPTI7H8r9sRd2THyWrUewTK3LqvyqEPvv9DVTXPrY60k6J16ODn4/DjrRDggKROKS/1fqQvpGoOLfLpv+jU4A/JsTr8dWJc4oRQC79V03kqHlch+NnL1ut+3h7YtWiuQ6r48WJidBqnz9PKu3gUC79V43QALBuyw7B9YVzJmLpyzNavX9YtyBsXfsGugQGWD+lHvsMFed2WfyZPna41e3EuihnQrwegR38hJ/ebaxFtDhh4/eTsv/tUuiL13Pxty+PCW5b/Zuf4ciWdzB7QgJCu3aGu5srfLw90UsXgrRJichc/xYu7/4IM8fHw94rOQdG90R0jzBRfhZ3N1fMSh6pqKnm7P6rKkM3snRdBnqEdcOIAdFW2+L69bG6KEjUg0GBmFD7uA49JvwSj6qqW7zvyb+uR2xUD8vYMSkRGTu+VpTUzuy/6iZ0o0CzXl+LnQdPOfT7urm6YOZ464l6MCu7VZkBYOfhU4KvEERGdFeU0M7qv2qFBoBKUzXmr3of8//wPq7lGmy+X+PZuwobBHyW5Hi94NmynYdse2B3HcqCWeC6SSVesOSM/qs2cjwr085Dp5Cgj0FSXCyGx0ZB1y0IHf0bfkmzylSDu6UPcC3XgJPZV7DvxDkU2flLmnMFDgarTDU4eCrbtgOve6U4+30OhsVGPfOqySis+TgT9fVmxYntyP6LjcYzXN9ix3umHbZaMxxbAEKkRjdms9Va7vbxyokchKgqQxNCoQmh0IRCE0KhCaHQhFBoQig0odCA8BkcQsTEXsdaFbq1U42EOApbXGTkIIwchKhOaOZoIrf8bLPQzNFECfmZkYMwcjB2ELnGjTYJzdhB5B43GDlI+44cQnsKYweRMm60NRlopSqEEGc41GahmaWJHLOz6BmaU5rIwZ1W35ejOYTerwNQ33t2vLlpOfwDrd9ZKX3ZB7ibV9y0fffGf+Lytxetbhc9NAYjJo9EcEQItC5alBWVIvvodzh34DTMZjPGvTQBCdOTcOnEBez5sOFdQCe/Og1Dkofhbl4x0pd9AAAYPC4OUxbNwL+v3MGnqz9Rvcz2JgFXzgfbaE7Ylhg+eSRSXkmFsbAEGcs/Qq2pBlMWzcCk+VMQHNENX6TvguF6PjAd0EU9/bD4sMiGf3cND4aHlwdqq2sR9r/thpw8PhhSRI7m9iBGjwa8fL0xdm4yAODAtn0wFpag4n4F9n68B/X19Rg0ZjBCe4ehICcfZrMZgV07wTfADx5eHugaHgxjYQk0Gg1CI3UNfW0U+kY+p7NUGZpSN094dATc3N0AAHlX7zStP3pQgbKihs816RnbG9VV1Sj9j7FJ2tDeOmg0GmTt/bZhrU84fAP8ENi1E8xmMwpvGSizlJEjd/t4wTytG7NZVXn6hSVz8MKSOQCAJ3VPsGbeqhZv7+3nDQCoe1yHJ3VPLLaZHpkAAD7+Pk1TNyi0C3R9wlFbXQsAyDl/HWXFpdD1Ccc9Q8NnJBoLSlBTVUOZnZWh1SR1WzN0o7Ru7m5wdXO1kLpRdlOFqSkX68cNgS4qHLWmWpQWGWF6ZEL+9Tz0HdEfJYUlqsnPUj97i/KyXUt7VnuNH/nX81D3uA4AEBHz9B3+/Tr6o1NIw8cR37580yIXB/8kBKGRuqavDTfy4O7pjtjEgQCAghyDamUW6/yGaK9DtyZ1exO7utKE4/9oiGIpr6QiqHsX+HX0x9TXZkCr1eLSNxdQeKsAAHD/bhkqyyvh4uICd093FOTkW4ju5eOl6APC1h5/MU/WiRo5msvTas3VzWVsAPj7+s+QtfckHhofYnhqPBau+zW0Wi3Kiktx4NOvcGa/5afTFuTkIzouxmISlxWXoqq8Ej4dfFFVXon798pUFzHEPvNs94mVlmhJ6kb4punqxpZnZCkuo5BEaFvFptTtU2YprweSVGhbpzXlbh8TWWqZHSJ0W6Sm3OqU2FEyO0xoe8Wm4MoW2JEiO0Xo5xWbKAtnXDvvFKEpNkVWpdAUmyKrUmjKTYlVKzQFp8CqFpqQtsA3miEUmhAKTQiFJoRCEwpNCIUmRHb8F7ZzHMFkXRrhAAAAAElFTkSuQmCC">
+  <style>
+:root {
+  --navy: #0b2740;
+  --navy-2: #123a59;
+  --teal: #17b3a6;
+  --teal-dark: #0f8f86;
+  --blue: #2f6ee5;
+  --ink: #193247;
+  --muted: #6f8393;
+  --line: #dbe6ed;
+  --panel: #ffffff;
+  --soft: #f4f8fb;
+  --soft-teal: #eaf8f6;
+  --locked: #a8b6c1;
+  --danger: #c54b55;
+  --shadow: 0 12px 30px rgba(21, 50, 72, .08);
+  --radius: 18px;
+}
+
+* { box-sizing: border-box; }
+html { background: #eef4f7; }
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, #f7fafc 0%, #edf4f7 100%);
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+button, input { font: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+
+.app-shell { max-width: 1100px; margin: 0 auto; padding: 0 18px 32px; }
+.topbar {
+  margin: 0 -18px 24px;
+  padding: calc(24px + env(safe-area-inset-top)) 18px 22px;
+  background: linear-gradient(145deg, var(--navy), var(--navy-2));
+  color: #fff;
+  border-radius: 0 0 28px 28px;
+  box-shadow: 0 12px 32px rgba(5, 33, 52, .18);
+}
+.brand-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; max-width: 1100px; margin: 0 auto; }
+.eyebrow, .section-kicker { font-size: 12px; font-weight: 800; letter-spacing: .12em; color: #70e2d8; }
+h1 { font-size: clamp(25px, 5.6vw, 38px); margin: 5px 0 7px; letter-spacing: -.04em; }
+.brand-row p { margin: 0; color: #d6e5ee; font-size: 14px; line-height: 1.6; }
+.ghost-btn {
+  min-width: 64px; min-height: 44px; border: 1px solid rgba(255,255,255,.28); border-radius: 13px;
+  color: #fff; background: rgba(255,255,255,.08); font-weight: 750; padding: 0 13px;
+}
+.ghost-btn:active { transform: scale(.98); }
+
+.overall-card {
+  max-width: 1100px; margin: 20px auto 0; padding: 17px 18px 15px;
+  border: 1px solid rgba(255,255,255,.16); border-radius: 18px; background: rgba(255,255,255,.10);
+  backdrop-filter: blur(10px);
+}
+.overall-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.small-label { display: block; font-size: 12px; color: #cde0ea; margin-bottom: 2px; }
+#overallPercent { font-size: 29px; letter-spacing: -.04em; }
+.count-pill { font-size: 12px; font-weight: 750; background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.15); padding: 7px 10px; border-radius: 999px; color: #edf8fb; }
+.progress-track { width: 100%; height: 8px; background: rgba(7, 29, 45, .12); border-radius: 999px; overflow: hidden; }
+.progress-track.large { margin-top: 12px; height: 10px; background: rgba(255,255,255,.18); }
+.progress-fill { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #36e3d2, #4a9af2); transition: width .25s ease; }
+.next-action { margin-top: 10px; font-size: 13px; color: #d7edf0; }
+
+.section-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin: 24px 2px 14px; }
+.section-head h2 { margin: 3px 0 0; font-size: 23px; letter-spacing: -.04em; }
+.section-head p { margin: 0; font-size: 13px; color: var(--muted); text-align: right; }
+
+.flow { display: grid; grid-template-columns: repeat(var(--stage-count, 6), minmax(150px, 1fr)); gap: 12px; overflow-x: auto; padding: 2px 2px 10px; scroll-snap-type: x proximity; }
+.stage-card {
+  position: relative; min-height: 188px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel);
+  padding: 15px; text-align: left; color: var(--ink); box-shadow: 0 5px 20px rgba(27, 57, 79, .05);
+  cursor: pointer; scroll-snap-align: start; transition: transform .15s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.stage-card:not(.locked):active { transform: scale(.985); }
+.stage-card.active { border-color: rgba(23,179,166,.75); box-shadow: 0 9px 30px rgba(23,179,166,.13); }
+.stage-card.complete { border-color: rgba(23,179,166,.48); background: linear-gradient(180deg, #fff, #f5fcfb); }
+.stage-card.locked { cursor: not-allowed; background: #f3f6f8; color: #8999a5; box-shadow: none; }
+.stage-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.step-label { color: var(--teal-dark); font-size: 11px; font-weight: 850; letter-spacing: .08em; }
+.locked .step-label { color: #8f9eaa; }
+.status-dot { width: 9px; height: 9px; border-radius: 50%; background: #d2dde4; box-shadow: 0 0 0 4px #f0f4f6; }
+.complete .status-dot { background: var(--teal); box-shadow: 0 0 0 4px var(--soft-teal); }
+.stage-card h3 { margin: 17px 0 7px; font-size: 16px; line-height: 1.35; letter-spacing: -.025em; }
+.stage-card p { margin: 0; font-size: 12px; line-height: 1.55; color: var(--muted); min-height: 55px; }
+.locked p { color: #99a7b0; }
+.stage-progress { margin-top: 14px; }
+.stage-progress-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 11px; font-weight: 750; }
+.stage-progress .progress-track { background: #edf2f5; height: 7px; }
+.stage-card.locked .progress-fill { background: #bfc9d0; }
+.lock-text { margin-top: 8px; font-size: 11px; color: #8b9aa5; display: none; }
+.stage-card.locked .lock-text { display: block; }
+
+.detail-panel { margin-top: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); overflow: hidden; min-height: 230px; }
+.detail-head { padding: 20px 20px 16px; border-bottom: 1px solid #e7eef2; background: linear-gradient(180deg, #fbfdfd, #f5fafa); }
+.detail-step { font-size: 12px; font-weight: 850; color: var(--teal-dark); letter-spacing: .08em; }
+.detail-title-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-top: 4px; }
+.detail-title-row h3 { margin: 0; font-size: 22px; letter-spacing: -.035em; }
+.detail-percent { font-size: 23px; font-weight: 850; color: var(--navy); }
+.detail-summary { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.detail-head .progress-track { margin-top: 13px; height: 8px; background: #dfe9ee; }
+.checklist { list-style: none; padding: 8px 12px 14px; margin: 0; }
+.check-item { border-bottom: 1px solid #edf2f5; }
+.check-item:last-child { border-bottom: 0; }
+.check-label { display: flex; gap: 12px; align-items: flex-start; padding: 14px 9px; cursor: pointer; }
+.check-label input { position: absolute; opacity: 0; pointer-events: none; }
+.check-box {
+  flex: 0 0 auto; width: 24px; height: 24px; margin-top: 1px; border: 2px solid #c5d2db; border-radius: 8px; background: #fff;
+  display: grid; place-items: center; transition: all .15s ease;
+}
+.check-box::after { content: '✓'; color: #fff; font-size: 15px; font-weight: 900; opacity: 0; transform: scale(.7); transition: all .15s ease; }
+.check-label input:checked + .check-box { background: var(--teal); border-color: var(--teal); }
+.check-label input:checked + .check-box::after { opacity: 1; transform: scale(1); }
+.check-copy { min-width: 0; }
+.check-copy strong { display: block; font-size: 14px; line-height: 1.45; }
+.check-copy span { display: block; margin-top: 3px; font-size: 12px; line-height: 1.55; color: var(--muted); }
+.check-label input:checked ~ .check-copy strong { color: #638075; text-decoration: line-through; text-decoration-color: #9bcac4; }
+.empty-state { text-align: center; padding: 48px 20px; color: var(--muted); }
+.empty-icon { width: 50px; height: 50px; margin: 0 auto 12px; border-radius: 16px; display: grid; place-items: center; background: var(--soft-teal); color: var(--teal-dark); font-weight: 900; font-size: 22px; }
+.empty-state h3 { color: var(--ink); margin: 0 0 7px; font-size: 18px; }
+.empty-state p { margin: 0; font-size: 13px; line-height: 1.6; }
+
+footer { display: flex; justify-content: space-between; gap: 16px; margin-top: 18px; padding: 0 3px calc(4px + env(safe-area-inset-bottom)); color: #8395a1; font-size: 11px; }
+footer span:first-child { font-weight: 850; color: var(--navy-2); }
+
+@media (max-width: 760px) {
+  .app-shell { padding-left: 12px; padding-right: 12px; }
+  .topbar { margin-left: -12px; margin-right: -12px; padding-left: 14px; padding-right: 14px; border-radius: 0 0 24px 24px; }
+  .brand-row { align-items: flex-start; }
+  .brand-row p { max-width: 260px; }
+  .section-head { align-items: flex-start; }
+  .section-head p { max-width: 145px; }
+  .flow { grid-template-columns: repeat(6, 178px); margin-right: -12px; padding-right: 12px; }
+  .stage-card { min-height: 181px; }
+  .detail-panel { border-radius: 18px; }
+  .detail-title-row { align-items: flex-start; }
+  footer { flex-direction: column; gap: 4px; }
+}
+
+@media (max-width: 390px) {
+  .ghost-btn { min-width: 58px; padding: 0 10px; }
+  .section-head p { display: none; }
+  .overall-head { align-items: center; }
+  .detail-title-row h3 { font-size: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+}
+
+.stage-card[aria-disabled="true"] { pointer-events: auto; }
+.stage-card .tap-hint { margin-top: 8px; font-size: 10px; color: var(--teal-dark); font-weight: 800; }
+.stage-card.locked .tap-hint { color: #9aa8b1; }
+.brand-mark { display:flex; align-items:center; gap:10px; margin-bottom:5px; }
+.brand-icon { width:46px; height:46px; border-radius:13px; border:1px solid rgba(255,255,255,.23); background:rgba(255,255,255,.08); padding:4px; }
+.brand-icon img { width:100%; height:100%; border-radius:9px; display:block; }
+.version-badge { display:inline-flex; align-items:center; min-height:24px; padding:0 9px; border-radius:999px; background:rgba(112,226,216,.12); border:1px solid rgba(112,226,216,.28); color:#9ff0e8; font-size:10px; font-weight:800; letter-spacing:.06em; }
+.detail-panel { scroll-margin-top: 12px; }
+.stage-card.locked { opacity:.72; }
+.stage-card.complete .tap-hint::before { content:'✓ '; }
+.storage-note { color:#8aa0ae; }
+@media (max-width:760px){
+  .brand-row>div:first-child{min-width:0}
+  .brand-mark{align-items:flex-start}
+  .brand-icon{width:42px;height:42px;flex:0 0 auto}
+  .brand-mark h1{margin-top:0}
+}
+
+/* FLOW / CHECKLIST management */
+.section-actions { display:flex; align-items:center; justify-content:flex-end; gap:12px; flex-wrap:wrap; }
+.section-actions p { margin:0; }
+.primary-small-btn, .secondary-small-btn, .danger-small-btn, .primary-btn, .secondary-btn, .danger-btn, .icon-btn {
+  font: inherit; -webkit-tap-highlight-color: transparent; touch-action: manipulation; cursor:pointer;
+}
+.primary-small-btn { min-height:38px; padding:0 13px; border:0; border-radius:11px; background:var(--teal); color:#fff; font-size:12px; font-weight:850; box-shadow:0 6px 16px rgba(23,179,166,.18); }
+.primary-small-btn:active { transform:translateY(1px); }
+.stage-wrap { position:relative; min-width:0; }
+.stage-wrap .stage-card { width:100%; height:100%; }
+.stage-delete-quick {
+  position:absolute; right:10px; bottom:10px; z-index:4; min-height:28px; padding:0 9px; border-radius:999px;
+  border:1px solid rgba(197,75,85,.28); background:rgba(255,255,255,.94); color:var(--danger); font-size:10px; font-weight:850; cursor:pointer;
+}
+.stage-delete-quick:hover { background:#fff3f4; }
+.management-note { margin:0 0 14px; padding:10px 12px; border-radius:12px; background:#fff8e8; border:1px solid #f3dfad; color:#745a1a; font-size:12px; line-height:1.55; }
+.detail-actions { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:14px; }
+.secondary-small-btn { min-height:36px; padding:0 12px; border-radius:10px; border:1px solid #cfdde6; background:#fff; color:var(--navy-2); font-size:12px; font-weight:850; }
+.danger-small-btn { min-height:36px; padding:0 12px; border-radius:10px; border:1px solid rgba(197,75,85,.35); background:#fff7f7; color:var(--danger); font-size:12px; font-weight:850; }
+.check-item-row { display:flex; align-items:stretch; gap:8px; }
+.check-item-row .check-label { flex:1; min-width:0; }
+.check-delete-btn { flex:0 0 auto; align-self:center; min-height:36px; padding:0 10px; border-radius:10px; border:1px solid rgba(197,75,85,.28); background:#fff; color:var(--danger); font-size:11px; font-weight:850; cursor:pointer; }
+.check-label input:disabled + .check-box { opacity:.45; }
+.check-label input:disabled ~ .check-copy { opacity:.62; }
+.empty-flow { grid-column:1/-1; min-height:178px; border:1px dashed #bfd0da; border-radius:18px; background:rgba(255,255,255,.68); display:grid; place-items:center; text-align:center; padding:28px; color:var(--muted); }
+.empty-flow strong { display:block; color:var(--ink); margin-bottom:5px; font-size:16px; }
+.modal-backdrop { position:fixed; inset:0; z-index:1000; background:rgba(7,29,47,.56); display:flex; align-items:flex-end; justify-content:center; padding:18px; }
+.modal-backdrop[hidden] { display:none; }
+.modal-card { width:min(560px,100%); max-height:calc(100% - 24px); overflow:auto; border-radius:22px; background:#fff; box-shadow:0 22px 60px rgba(2,19,32,.28); padding:20px; }
+.modal-head { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:18px; }
+.modal-head h3 { margin:4px 0 0; color:var(--navy); font-size:22px; }
+.icon-btn { width:42px; height:42px; border-radius:12px; border:1px solid var(--line); background:var(--soft); color:var(--navy); font-size:25px; line-height:1; }
+.field-label { display:block; margin:12px 0 7px; color:var(--navy-2); font-size:12px; font-weight:850; }
+.text-input { width:100%; min-height:46px; border:1px solid #cfdde6; border-radius:12px; background:#fff; color:var(--ink); font:inherit; font-size:16px; padding:11px 12px; outline:none; }
+.text-input:focus { border-color:var(--teal); box-shadow:0 0 0 3px rgba(23,179,166,.12); }
+.textarea { resize:vertical; min-height:100px; line-height:1.55; }
+.modal-actions { display:flex; justify-content:flex-end; gap:9px; margin-top:18px; }
+.primary-btn, .secondary-btn, .danger-btn { min-height:44px; padding:0 16px; border-radius:12px; font-weight:850; }
+.primary-btn { border:0; background:var(--teal); color:#fff; }
+.secondary-btn { border:1px solid #cfdde6; background:#fff; color:var(--navy); }
+.danger-btn { border:1px solid rgba(197,75,85,.35); background:#fff7f7; color:var(--danger); }
+@media (max-width:760px){
+  .section-actions { width:100%; justify-content:space-between; }
+  .section-actions p { display:none; }
+  .primary-small-btn { min-height:42px; }
+  .flow { grid-template-columns:repeat(var(--stage-count, 6), 178px); }
+  .modal-backdrop { padding:10px; }
+  .modal-card { border-radius:20px 20px 14px 14px; }
+}
+
+  </style>
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
       <div class="brand-row">
         <div>
-          <div class="eyebrow">COTEC DEVELOPMENT FLOW</div>
-          <h1>통합 개발 진행관리</h1>
+          <div class="brand-mark">
+            <div class="brand-icon"><img alt="C.A.F.C" src="data:image/png;base64,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"></div>
+            <div>
+              <div class="eyebrow">COTEC DEVELOPMENT FLOW</div>
+              <h1>통합 개발 진행관리</h1>
+            </div>
+          </div>
           <p>4개 프로그램 완성부터 통합 AI 분석까지 순서대로 진행합니다.</p>
+          <div style="margin-top:9px"><span class="version-badge">C.A.F.C · FLOWCHART V1.2.0</span></div>
         </div>
         <button id="resetBtn" class="ghost-btn" type="button" aria-label="전체 체크 초기화">초기화</button>
       </div>
@@ -45,25 +272,498 @@
           <span class="section-kicker">ROADMAP</span>
           <h2>개발 FLOW</h2>
         </div>
-        <p>단계를 누르면 세부 체크리스트가 열립니다.</p>
+        <div class="section-actions">
+          <p>단계를 누르면 세부 체크리스트가 열립니다.</p>
+          <button id="addStageBtn" class="primary-small-btn" type="button">+ STEP 신규등록</button>
+        </div>
       </section>
 
       <div id="flow" class="flow" aria-label="개발 단계"></div>
 
-      <section id="detailPanel" class="detail-panel" aria-live="polite">
-        <div class="empty-state">
-          <div class="empty-icon">✓</div>
-          <h3>진행할 단계를 선택하세요</h3>
-          <p>열려 있는 STEP을 누르면 세부 작업 목록을 확인할 수 있습니다.</p>
-        </div>
-      </section>
+      <section id="detailPanel" class="detail-panel" aria-live="polite"></section>
     </main>
 
+    <div id="modalBackdrop" class="modal-backdrop" hidden>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-head">
+          <div>
+            <span class="section-kicker">REGISTER</span>
+            <h3 id="modalTitle">신규등록</h3>
+          </div>
+          <button id="modalCloseBtn" class="icon-btn" type="button" aria-label="닫기">×</button>
+        </div>
+        <form id="modalForm">
+          <label class="field-label" for="modalName">이름</label>
+          <input id="modalName" class="text-input" type="text" maxlength="80" autocomplete="off" required>
+          <label class="field-label" for="modalDescription">설명</label>
+          <textarea id="modalDescription" class="text-input textarea" maxlength="240" rows="4"></textarea>
+          <div class="modal-actions">
+            <button id="modalCancelBtn" class="secondary-btn" type="button">취소</button>
+            <button class="primary-btn" type="submit">등록</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <footer>
-      <span>COTEC FLOW</span>
-      <span>진행상황은 이 iPhone의 브라우저에 자동 저장됩니다.</span>
+      <span>C.A.F.C · FLOWCHART</span>
+      <span class="storage-note">진행상황과 사용자 등록 FLOW는 이 기기의 브라우저에 자동 저장됩니다.</span>
     </footer>
   </div>
-  <script type="module" src="./js/app.mjs"></script>
+
+  <script>
+'use strict';
+const DEFAULT_ROADMAP_STAGES = [
+  {
+    id: 'step1',
+    number: 1,
+    title: '4개 프로그램 단독 기능 완성',
+    shortTitle: '개별 프로그램 완성',
+    summary: '각 프로그램을 다른 프로그램 도움 없이 단독으로 사용할 수 있는 상태까지 완성합니다.',
+    tasks: [
+      { id: 's1-mes-core', label: 'MES 핵심 기능 안정화', detail: '수주·생산·작업지시·LOT·실적 기능의 오류와 누락 항목을 정리합니다.' },
+      { id: 's1-mes-analysis', label: 'MES 용액분석 / 원가 / 품질 기능 점검', detail: '별도 관리 프로그램 없이 MES 내부에서 관리 가능한 상태인지 확인합니다.' },
+      { id: 's1-acpt-core', label: 'ACPT 기술지식 / 교육 기능 안정화', detail: '도금별 지식, 교육, 질의 기능이 정상 동작하는지 확인합니다.' },
+      { id: 's1-acpt-tank', label: 'ACPT 탱크 / 공정 / 설비 정보 입력 구조 완성', detail: 'LINE·TANK와 공정 기술정보를 입력·조회할 수 있도록 준비합니다.' },
+      { id: 's1-acpt-trouble', label: 'ACPT 트러블슈팅 기능 고도화', detail: '제품→전처리→전기/화학→유동/여과→랙/양극→후처리 순서로 진단할 수 있게 정리합니다.' },
+      { id: 's1-jig-core', label: 'JIG 설계 기본 기능 완성', detail: '제품 배치, 수량, 간격, 접점, 지그 형상 검토 기능을 안정화합니다.' },
+      { id: 's1-jig-current', label: 'JIG 전류용량 / 접점 검토 기능 보완', detail: '지그별 허용 전류와 접점 조건을 검토할 수 있도록 합니다.' },
+      { id: 's1-sim-core', label: '도금 두께 시뮬레이터 기본 해석 완성', detail: '제품 배치·전류·거리 조건에 따른 위치별 예상 두께를 계산합니다.' },
+      { id: 's1-sim-verify', label: '시뮬레이터 실제 결과 비교용 기준 정리', detail: '향후 MES 실측값과 비교할 수 있도록 입력·출력 항목을 고정합니다.' },
+      { id: 's1-mobile', label: '4개 프로그램 모바일 사용성 점검', detail: 'iPhone 등 모바일 화면에서 핵심 조회와 입력이 가능한지 확인합니다.' }
+    ]
+  },
+  {
+    id: 'step2',
+    number: 2,
+    title: '공통 데이터 기준 정의',
+    shortTitle: '공통 데이터 기준',
+    summary: '4개 프로그램이 같은 제품과 같은 작업을 동일하게 인식하도록 공통 키를 정합니다.',
+    tasks: [
+      { id: 's2-part', label: 'PART_ID / 제품번호 기준 확정', detail: '제품을 식별하는 공통 제품번호 규칙을 정합니다.' },
+      { id: 's2-plating', label: '도금종류 코드 기준 확정', detail: 'MES·ACPT·JIG·시뮬레이터가 같은 도금명을 사용하도록 통일합니다.' },
+      { id: 's2-lot', label: 'LOT_ID 기준 확정', detail: '생산 LOT를 프로그램 간 연결할 수 있는 형식으로 정합니다.' },
+      { id: 's2-line', label: 'LINE_ID 기준 확정', detail: '생산 라인 식별 규칙을 정합니다.' },
+      { id: 's2-tank', label: 'TANK_ID 기준 확정', detail: 'ACPT 탱크 정보와 MES 생산/분석 데이터를 연결할 수 있도록 합니다.' },
+      { id: 's2-jig', label: 'JIG_ID 기준 확정', detail: '지그 설계 결과와 실제 생산 사용 지그를 연결합니다.' },
+      { id: 's2-fields', label: '공통 필드명 / 단위 기준 문서화', detail: '두께, 면적, 전류, 시간, 온도 등 공유 데이터의 단위를 통일합니다.' }
+    ]
+  },
+  {
+    id: 'step3',
+    number: 3,
+    title: '프로그램 간 데이터 전달 연결',
+    shortTitle: '데이터 연동',
+    summary: '중복 입력을 줄이고 MES의 작업정보가 각 전문 프로그램으로 전달되도록 연결합니다.',
+    tasks: [
+      { id: 's3-mes-acpt', label: 'MES → ACPT 제품 / 공정 정보 전달', detail: 'MES 작업에서 해당 제품과 도금종류를 ACPT가 바로 조회할 수 있게 합니다.' },
+      { id: 's3-mes-jig', label: 'MES → JIG 제품 / 수량 정보 전달', detail: '제품번호와 생산수량을 JIG 설계에서 다시 입력하지 않도록 합니다.' },
+      { id: 's3-mes-sim', label: 'MES → 시뮬레이터 제품 / 작업 조건 전달', detail: '제품, 요구두께, 작업수량 등 필요한 기본값을 전달합니다.' },
+      { id: 's3-jig-sim', label: 'JIG → 시뮬레이터 배치 / 간격 정보 전달', detail: '지그 설계 결과를 시뮬레이터 형상 조건으로 연결합니다.' },
+      { id: 's3-result-mes', label: 'JIG / 시뮬레이터 결과 → MES 참조 연결', detail: '생산 작업에서 설계·예측 결과를 다시 확인할 수 있도록 연결합니다.' },
+      { id: 's3-mobile-test', label: 'iPhone / PC 연동 흐름 점검', detail: '각 화면 이동과 데이터 전달이 모바일과 PC에서 동일하게 동작하는지 확인합니다.' }
+    ]
+  },
+  {
+    id: 'step4',
+    number: 4,
+    title: '실제 생산 FLOW 연결',
+    shortTitle: '생산 FLOW 완성',
+    summary: '하나의 MES 작업지시가 설계·예측·기술검토·생산·결과저장까지 이어지는 흐름을 완성합니다.',
+    tasks: [
+      { id: 's4-order', label: 'MES 작업지시에서 제품 / 도금 / 요구두께 불러오기', detail: '생산 시작점의 기준 데이터를 확정합니다.' },
+      { id: 's4-jig', label: 'JIG 배치 / 수량 검토 연결', detail: '해당 작업에 사용할 지그와 제품 배치를 검토합니다.' },
+      { id: 's4-sim', label: '도금 두께 시뮬레이션 사전 검증 연결', detail: '생산 전에 예상 두께와 편차를 확인합니다.' },
+      { id: 's4-acpt', label: 'ACPT 공정 / 탱크 / 기술조건 확인 연결', detail: '생산 전 적용 기술조건과 주의사항을 검토합니다.' },
+      { id: 's4-production', label: '실제 생산 실행 단계 정의', detail: '검토가 끝난 조건을 기준으로 실제 생산을 진행합니다.' },
+      { id: 's4-result', label: 'MES 실제 생산결과 저장 구조 확인', detail: '전류·시간·용액분석·두께·불량·원가 등 실제 결과를 기록합니다.' },
+      { id: 's4-loop-test', label: '1개 실제 품목으로 전체 FLOW 시험', detail: '하나의 품목을 처음부터 끝까지 통과시켜 끊기는 구간을 확인합니다.' }
+    ]
+  },
+  {
+    id: 'step5',
+    number: 5,
+    title: '예측값과 실제값 비교 데이터 축적',
+    shortTitle: '데이터 축적 / 검증',
+    summary: '시뮬레이션·설계·기술검토 결과와 실제 생산 결과를 비교해 개선 가능한 데이터를 쌓습니다.',
+    tasks: [
+      { id: 's5-thickness', label: '예상두께 ↔ 실제두께 비교', detail: '평균뿐 아니라 가능하면 위치별 두께 편차도 함께 비교합니다.' },
+      { id: 's5-condition', label: '예상조건 ↔ 실제 작업조건 비교', detail: '전류·시간·온도 등 실제 생산 편차를 기록합니다.' },
+      { id: 's5-jig', label: 'JIG별 생산결과 비교', detail: '같은 제품에서 지그별 품질과 두께 차이를 확인합니다.' },
+      { id: 's5-tank', label: 'LINE / TANK별 생산결과 비교', detail: '동일 제품의 라인·탱크 차이를 분석할 수 있게 축적합니다.' },
+      { id: 's5-defect', label: '불량 발생조건과 원인 연결', detail: '불량유형, 당시 조건, 조치결과를 함께 저장합니다.' },
+      { id: 's5-sim-correction', label: '시뮬레이터 보정 기준 수립', detail: '실측과 예측 차이를 근거로 모델 보정 필요 여부를 판단합니다.' },
+      { id: 's5-acpt-feedback', label: 'ACPT 기술지식에 실제 사례 반영 기준 수립', detail: '검증된 현장 결과만 ACPT 기술자료에 누적하도록 기준을 정합니다.' }
+    ]
+  },
+  {
+    id: 'step6',
+    number: 6,
+    title: '통합 AI 분석 기능 추가',
+    shortTitle: '통합 AI 분석',
+    summary: '충분히 연결된 데이터와 검증 결과를 기반으로 조회·비교·원인분석·추천 기능을 추가합니다.',
+    tasks: [
+      { id: 's6-search', label: '4개 프로그램 통합 조회 기능', detail: '한 질문에서 MES·ACPT·JIG·시뮬레이터 정보를 함께 검색합니다.' },
+      { id: 's6-context', label: '현재 LOT / 제품 / 탱크 문맥 자동 인식', detail: '사용자가 작업을 지정하면 관련 데이터를 묶어서 분석하도록 합니다.' },
+      { id: 's6-compare', label: '과거 유사 작업 / 불량 사례 비교', detail: '동일 제품·지그·탱크·불량유형의 과거 사례를 찾아 비교합니다.' },
+      { id: 's6-cause', label: '문제 원인 우선순위 분석', detail: '욕조성만 보지 않고 접점·지그·전류분포·유동·공정조건을 순서대로 판단합니다.' },
+      { id: 's6-recommend', label: '라인 관리자 조치 권고 기능', detail: '확인순서와 조치안을 제안하되 실제 변경은 관리자 판단으로 진행합니다.' },
+      { id: 's6-validation', label: 'AI 권고 결과 검증 / 피드백 기록', detail: '권고가 맞았는지 생산 결과를 통해 다시 검증합니다.' },
+      { id: 's6-mobile', label: 'iPhone에서 통합 조회 / 진행상태 사용성 검증', detail: '현장에서 필요한 핵심 기능이 모바일로 충분히 동작하는지 확인합니다.' }
+    ]
+  }
+];
+
+
+const STORAGE_KEY = 'cafc-flowchart-v1';
+const ROADMAP_STORAGE_KEY = 'cafc-flowchart-roadmap-v2';
+const root = {
+  flow: document.querySelector('#flow'),
+  detail: document.querySelector('#detailPanel'),
+  overallPercent: document.querySelector('#overallPercent'),
+  overallCount: document.querySelector('#overallCount'),
+  overallBar: document.querySelector('#overallBar'),
+  nextAction: document.querySelector('#nextAction'),
+  resetBtn: document.querySelector('#resetBtn'),
+  addStageBtn: document.querySelector('#addStageBtn'),
+  modalBackdrop: document.querySelector('#modalBackdrop'),
+  modalTitle: document.querySelector('#modalTitle'),
+  modalForm: document.querySelector('#modalForm'),
+  modalName: document.querySelector('#modalName'),
+  modalDescription: document.querySelector('#modalDescription'),
+  modalCloseBtn: document.querySelector('#modalCloseBtn'),
+  modalCancelBtn: document.querySelector('#modalCancelBtn')
+};
+
+function deepClone(value) { return JSON.parse(JSON.stringify(value)); }
+function makeId(prefix) {
+  if (window.crypto && typeof window.crypto.randomUUID === 'function') return prefix + '-' + window.crypto.randomUUID();
+  return prefix + '-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 9);
+}
+function reindexStages(stages) {
+  return (Array.isArray(stages) ? stages : []).map((stage, index) => ({
+    ...deepClone(stage),
+    number: index + 1,
+    title: String(stage && stage.title || '새 STEP'),
+    shortTitle: String(stage && (stage.shortTitle || stage.title) || ('STEP ' + (index + 1))),
+    summary: String(stage && stage.summary || ''),
+    tasks: Array.isArray(stage && stage.tasks) ? deepClone(stage.tasks) : []
+  }));
+}
+function addStage(stages, stage) {
+  const next = Array.isArray(stages) ? deepClone(stages) : [];
+  next.push({
+    id: stage.id,
+    title: stage.title || '새 STEP',
+    shortTitle: stage.shortTitle || stage.title || '새 STEP',
+    summary: stage.summary || '',
+    tasks: Array.isArray(stage.tasks) ? deepClone(stage.tasks) : []
+  });
+  return reindexStages(next);
+}
+function deleteStage(stages, stageId) {
+  return reindexStages((Array.isArray(stages) ? stages : []).filter(stage => stage.id !== stageId));
+}
+function addTask(stages, stageId, task) {
+  const next = deepClone(Array.isArray(stages) ? stages : []);
+  const stage = next.find(item => item.id === stageId);
+  if (!stage) return reindexStages(next);
+  if (!Array.isArray(stage.tasks)) stage.tasks = [];
+  stage.tasks.push({ id: task.id, label: task.label || '새 체크리스트', detail: task.detail || '' });
+  return reindexStages(next);
+}
+function deleteTask(stages, stageId, taskId) {
+  const next = deepClone(Array.isArray(stages) ? stages : []);
+  const stage = next.find(item => item.id === stageId);
+  if (stage && Array.isArray(stage.tasks)) stage.tasks = stage.tasks.filter(task => task.id !== taskId);
+  return reindexStages(next);
+}
+function pruneState(currentState, stages) {
+  const validIds = new Set((Array.isArray(stages) ? stages : []).flatMap(stage => Array.isArray(stage.tasks) ? stage.tasks.map(task => task.id) : []));
+  return Object.fromEntries(Object.entries(currentState || {}).filter(([id]) => validIds.has(id)));
+}
+
+function calculateStageProgress(stage, currentState) {
+  const tasks = Array.isArray(stage && stage.tasks) ? stage.tasks : [];
+  if (!tasks.length) return 0;
+  const done = tasks.filter(task => Boolean(currentState && currentState[task.id])).length;
+  return Math.round((done / tasks.length) * 100);
+}
+function isStageComplete(stage, currentState) {
+  const tasks = Array.isArray(stage && stage.tasks) ? stage.tasks : [];
+  return tasks.length > 0 && calculateStageProgress(stage, currentState) === 100;
+}
+function calculateOverallProgress(stages, currentState) {
+  const tasks = (Array.isArray(stages) ? stages : []).flatMap(stage => Array.isArray(stage.tasks) ? stage.tasks : []);
+  if (!tasks.length) return 0;
+  const done = tasks.filter(task => Boolean(currentState && currentState[task.id])).length;
+  return Math.round((done / tasks.length) * 100);
+}
+function isStageUnlocked(stages, stageIndex, currentState) {
+  if (stageIndex <= 0) return true;
+  for (let i = 0; i < stageIndex; i += 1) {
+    if (!isStageComplete(stages[i], currentState)) return false;
+  }
+  return true;
+}
+function toggleTaskState(currentState, taskId, checked) {
+  return Object.assign({}, currentState || {}, { [taskId]: Boolean(checked) });
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : {};
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+  } catch (error) { return {}; }
+}
+function loadRoadmap() {
+  try {
+    const raw = localStorage.getItem(ROADMAP_STORAGE_KEY);
+    if (!raw) return reindexStages(DEFAULT_ROADMAP_STAGES);
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return reindexStages(DEFAULT_ROADMAP_STAGES);
+    return reindexStages(parsed);
+  } catch (error) { return reindexStages(DEFAULT_ROADMAP_STAGES); }
+}
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (error) {}
+}
+function saveRoadmap() {
+  try { localStorage.setItem(ROADMAP_STORAGE_KEY, JSON.stringify(roadmapStages)); } catch (error) {}
+}
+function allTasks() { return roadmapStages.flatMap(stage => Array.isArray(stage.tasks) ? stage.tasks : []); }
+function firstAvailableStageIndex() {
+  if (!roadmapStages.length) return 0;
+  let lastUnlocked = 0;
+  roadmapStages.forEach((stage, index) => { if (isStageUnlocked(roadmapStages, index, state)) lastUnlocked = index; });
+  return lastUnlocked;
+}
+
+let roadmapStages = loadRoadmap();
+let state = pruneState(loadState(), roadmapStages);
+let activeStageIndex = firstAvailableStageIndex();
+let modalMode = null;
+let modalStageId = null;
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+function closeModal() {
+  root.modalBackdrop.hidden = true;
+  modalMode = null;
+  modalStageId = null;
+  root.modalForm.reset();
+}
+function openAddStageModal() {
+  modalMode = 'stage';
+  modalStageId = null;
+  root.modalTitle.textContent = 'STEP 신규등록';
+  root.modalName.previousElementSibling.textContent = 'STEP 이름';
+  root.modalName.placeholder = '예: 현장 실시간 데이터 연동';
+  root.modalDescription.previousElementSibling.textContent = 'STEP 설명';
+  root.modalDescription.placeholder = '이 단계의 목적을 입력하세요.';
+  root.modalBackdrop.hidden = false;
+  setTimeout(() => root.modalName.focus(), 0);
+}
+function openAddTaskModal(stageId) {
+  modalMode = 'task';
+  modalStageId = stageId;
+  root.modalTitle.textContent = '체크리스트 신규등록';
+  root.modalName.previousElementSibling.textContent = '체크리스트 이름';
+  root.modalName.placeholder = '예: 연동 API 응답 검증';
+  root.modalDescription.previousElementSibling.textContent = '세부 설명';
+  root.modalDescription.placeholder = '완료 기준이나 확인할 내용을 입력하세요.';
+  root.modalBackdrop.hidden = false;
+  setTimeout(() => root.modalName.focus(), 0);
+}
+function clampActiveStage() {
+  if (!roadmapStages.length) { activeStageIndex = 0; return; }
+  activeStageIndex = Math.max(0, Math.min(activeStageIndex, roadmapStages.length - 1));
+}
+function persistRoadmapChange() {
+  roadmapStages = reindexStages(roadmapStages);
+  state = pruneState(state, roadmapStages);
+  clampActiveStage();
+  saveRoadmap();
+  saveState();
+  render();
+}
+
+function renderSummary() {
+  const tasks = allTasks();
+  const done = tasks.filter(task => state[task.id]).length;
+  const percent = calculateOverallProgress(roadmapStages, state);
+  root.overallPercent.textContent = percent + '%';
+  root.overallCount.textContent = done + ' / ' + tasks.length + ' 완료';
+  root.overallBar.style.width = percent + '%';
+  if (!roadmapStages.length) {
+    root.nextAction.textContent = 'STEP을 신규등록하여 FLOW를 시작하세요.';
+    return;
+  }
+  const firstIncomplete = roadmapStages.findIndex(stage => !isStageComplete(stage, state));
+  root.nextAction.textContent = firstIncomplete === -1
+    ? '모든 단계가 완료되었습니다. 실제 운영 검증과 개선을 이어가세요.'
+    : '다음 작업: STEP ' + (firstIncomplete + 1) + ' · ' + roadmapStages[firstIncomplete].shortTitle;
+}
+
+function renderFlow() {
+  document.documentElement.style.setProperty('--stage-count', String(Math.max(1, roadmapStages.length)));
+  if (!roadmapStages.length) {
+    root.flow.innerHTML = '<div class="empty-flow"><div><strong>등록된 STEP이 없습니다.</strong><span>상단의 + STEP 신규등록 버튼으로 첫 FLOW를 만드세요.</span></div></div>';
+    return;
+  }
+  root.flow.innerHTML = roadmapStages.map((stage, index) => {
+    const progress = calculateStageProgress(stage, state);
+    const unlocked = isStageUnlocked(roadmapStages, index, state);
+    const active = index === activeStageIndex;
+    const completed = stage.tasks.filter(task => state[task.id]).length;
+    const classes = ['stage-card'];
+    if (!unlocked) classes.push('locked');
+    if (active) classes.push('active');
+    if (isStageComplete(stage, state)) classes.push('complete');
+    const hint = unlocked ? '세부 체크리스트 보기' : '검토 가능 · 체크는 잠금';
+    return '<div class="stage-wrap">' +
+      '<button class="' + classes.join(' ') + '" type="button" data-stage-index="' + index + '" aria-disabled="false">' +
+        '<div class="stage-top"><span class="step-label">STEP ' + (index + 1) + '</span><span class="status-dot"></span></div>' +
+        '<h3>' + escapeHtml(stage.shortTitle) + '</h3>' +
+        '<p>' + escapeHtml(stage.summary) + '</p>' +
+        '<div class="stage-progress">' +
+          '<div class="stage-progress-row"><span>' + progress + '%</span><span>' + completed + '/' + stage.tasks.length + '</span></div>' +
+          '<div class="progress-track"><div class="progress-fill" style="width:' + progress + '%"></div></div>' +
+          '<div class="lock-text">이전 STEP 완료 후 체크 활성화</div>' +
+          '<div class="tap-hint">' + hint + '</div>' +
+        '</div>' +
+      '</button>' +
+      '<button class="stage-delete-quick" type="button" data-delete-stage-id="' + escapeHtml(stage.id) + '" aria-label="STEP ' + (index + 1) + ' 삭제">삭제</button>' +
+    '</div>';
+  }).join('');
+
+  root.flow.querySelectorAll('.stage-card').forEach(button => {
+    button.addEventListener('click', () => {
+      activeStageIndex = Number(button.dataset.stageIndex);
+      renderFlow();
+      renderDetail();
+      if (window.matchMedia && window.matchMedia('(max-width: 760px)').matches) {
+        root.detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+  root.flow.querySelectorAll('[data-delete-stage-id]').forEach(button => {
+    button.addEventListener('click', event => {
+      event.stopPropagation();
+      const stageId = button.dataset.deleteStageId;
+      const index = roadmapStages.findIndex(stage => stage.id === stageId);
+      if (index < 0) return;
+      const stage = roadmapStages[index];
+      const confirmed = window.confirm('STEP ' + (index + 1) + ' · ' + stage.title + ' 을(를) 삭제하시겠습니까?\n해당 STEP의 체크리스트와 체크 상태도 함께 삭제됩니다.');
+      if (!confirmed) return;
+      roadmapStages = deleteStage(roadmapStages, stageId);
+      if (activeStageIndex >= index && activeStageIndex > 0) activeStageIndex -= 1;
+      persistRoadmapChange();
+    });
+  });
+}
+
+function renderDetail() {
+  const stage = roadmapStages[activeStageIndex];
+  if (!stage) {
+    root.detail.innerHTML = '<div class="empty-state"><div class="empty-icon">＋</div><h3>STEP을 신규등록하세요</h3><p>등록된 STEP이 없으면 진행 FLOW가 표시되지 않습니다.</p></div>';
+    return;
+  }
+  const progress = calculateStageProgress(stage, state);
+  const unlocked = isStageUnlocked(roadmapStages, activeStageIndex, state);
+  const managementNote = unlocked ? '' : '<p class="management-note">이 STEP은 이전 단계가 완료되기 전까지 체크는 잠겨 있습니다. STEP/체크리스트의 신규등록·삭제는 가능합니다.</p>';
+  const taskList = stage.tasks.length ? stage.tasks.map(task =>
+    '<li class="check-item"><div class="check-item-row"><label class="check-label">' +
+      '<input type="checkbox" data-task-id="' + escapeHtml(task.id) + '" ' + (state[task.id] ? 'checked' : '') + ' ' + (!unlocked ? 'disabled' : '') + '>' +
+      '<span class="check-box" aria-hidden="true"></span>' +
+      '<span class="check-copy"><strong>' + escapeHtml(task.label) + '</strong><span>' + escapeHtml(task.detail) + '</span></span>' +
+      '</label><button class="check-delete-btn" type="button" data-delete-task-id="' + escapeHtml(task.id) + '">삭제</button></div></li>'
+  ).join('') : '<li class="empty-state" style="padding:26px 12px"><div class="empty-icon">＋</div><h3>체크리스트가 없습니다</h3><p>아래 신규등록 버튼으로 완료 기준을 추가하세요.</p></li>';
+
+  root.detail.innerHTML = '<div class="detail-head">' +
+    '<div class="detail-step">STEP ' + (activeStageIndex + 1) + '</div>' +
+    '<div class="detail-title-row"><h3>' + escapeHtml(stage.title) + '</h3><div class="detail-percent">' + progress + '%</div></div>' +
+    '<p class="detail-summary">' + escapeHtml(stage.summary) + '</p>' +
+    '<div class="progress-track"><div class="progress-fill" style="width:' + progress + '%"></div></div>' +
+    '<div class="detail-actions">' +
+      '<button id="addTaskBtn" class="secondary-small-btn" type="button">+ 체크리스트 신규등록</button>' +
+      '<button id="deleteCurrentStageBtn" class="danger-small-btn" type="button">STEP 삭제</button>' +
+    '</div>' +
+    '</div>' + managementNote + '<ul class="checklist">' + taskList + '</ul>';
+
+  root.detail.querySelectorAll('input[type="checkbox"]').forEach(input => {
+    input.addEventListener('change', () => {
+      state = toggleTaskState(state, input.dataset.taskId, input.checked);
+      saveState();
+      render();
+    });
+  });
+  root.detail.querySelector('#addTaskBtn').addEventListener('click', () => openAddTaskModal(stage.id));
+  root.detail.querySelector('#deleteCurrentStageBtn').addEventListener('click', () => {
+    const confirmed = window.confirm('STEP ' + (activeStageIndex + 1) + ' · ' + stage.title + ' 을(를) 삭제하시겠습니까?\n해당 STEP의 체크리스트와 체크 상태도 함께 삭제됩니다.');
+    if (!confirmed) return;
+    roadmapStages = deleteStage(roadmapStages, stage.id);
+    if (activeStageIndex >= roadmapStages.length) activeStageIndex = Math.max(0, roadmapStages.length - 1);
+    persistRoadmapChange();
+  });
+  root.detail.querySelectorAll('[data-delete-task-id]').forEach(button => {
+    button.addEventListener('click', () => {
+      const taskId = button.dataset.deleteTaskId;
+      const task = stage.tasks.find(item => item.id === taskId);
+      if (!task) return;
+      const confirmed = window.confirm('체크리스트 “' + task.label + '” 을(를) 삭제하시겠습니까?');
+      if (!confirmed) return;
+      roadmapStages = deleteTask(roadmapStages, stage.id, taskId);
+      delete state[taskId];
+      persistRoadmapChange();
+    });
+  });
+}
+
+function render() {
+  renderSummary();
+  renderFlow();
+  renderDetail();
+}
+
+root.addStageBtn.addEventListener('click', openAddStageModal);
+root.modalCloseBtn.addEventListener('click', closeModal);
+root.modalCancelBtn.addEventListener('click', closeModal);
+root.modalBackdrop.addEventListener('click', event => { if (event.target === root.modalBackdrop) closeModal(); });
+root.modalForm.addEventListener('submit', event => {
+  event.preventDefault();
+  const name = root.modalName.value.trim();
+  const description = root.modalDescription.value.trim();
+  if (!name) { root.modalName.focus(); return; }
+  if (modalMode === 'stage') {
+    roadmapStages = addStage(roadmapStages, { id: makeId('stage'), title: name, shortTitle: name, summary: description, tasks: [] });
+    activeStageIndex = roadmapStages.length - 1;
+    saveRoadmap();
+    closeModal();
+    render();
+    return;
+  }
+  if (modalMode === 'task' && modalStageId) {
+    roadmapStages = addTask(roadmapStages, modalStageId, { id: makeId('task'), label: name, detail: description });
+    saveRoadmap();
+    closeModal();
+    render();
+  }
+});
+
+root.resetBtn.addEventListener('click', () => {
+  const confirmed = window.confirm('모든 체크 상태와 진행률을 초기화하시겠습니까?\n사용자가 등록한 STEP과 체크리스트는 유지됩니다.');
+  if (!confirmed) return;
+  state = {};
+  activeStageIndex = 0;
+  saveState();
+  render();
+});
+
+saveRoadmap();
+saveState();
+render();
+  </script>
 </body>
 </html>
