@@ -1,0 +1,9 @@
+{
+  "name": "cotec-flow-tracker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/logic.test.mjs && node tests/roadmap.test.mjs",
+    "check": "node --check js/app.mjs && node --check js/logic.mjs && node --check js/roadmap.mjs && node --check sw.js"
+  }
+}
