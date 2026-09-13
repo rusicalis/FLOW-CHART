@@ -3,935 +3,175 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#d5efec">
+<meta name="theme-color" content="#0b2d47">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="S.A.C">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FLOWCHART">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="application-name" content="S.A.C">
-<meta name="description" content="도금 작업용 모바일 표면적 및 보충량 계산기">
-<title>S.A.C 표면적·보충량 계산기</title>
-<link rel="manifest" href="./manifest.webmanifest?v=114">
-<link rel="apple-touch-icon" sizes="180x180" href="./icons/sac-icon-180-v107.png">
-<link rel="apple-touch-icon-precomposed" sizes="180x180" href="./icons/sac-icon-180-v107.png">
-<link rel="icon" type="image/png" sizes="192x192" href="./icons/sac-icon-192-v107.png">
-<link rel="icon" type="image/png" sizes="512x512" href="./icons/sac-icon-512-v107.png">
+<meta name="application-name" content="FLOWCHART">
+<title>C.D.F</title>
+<link rel="apple-touch-icon" sizes="180x180" href="CDF_ICON.png">
+<link rel="icon" type="image/png" href="CDF_ICON.png">
 <style>
-:root{
-  --header:#d5efec;
-  --header2:#b9dfdb;
-  --accent:#0f8f86;
-  --accent-dark:#08736d;
-  --accent-soft:#e8f6f4;
-  --bg:#f3f7f7;
-  --card:#ffffff;
-  --text:#17282b;
-  --muted:#6b7b7e;
-  --line:#d9e5e3;
-  --shadow:0 10px 30px rgba(30,66,66,.09);
-  font-family:"Noto Sans KR","Malgun Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:linear-gradient(180deg,#f8fbfb,#eef5f4);color:var(--text)}
-body{padding:0;-webkit-tap-highlight-color:transparent}
-button,input{font:inherit}
-button{cursor:pointer}
-.topbar{
-  position:fixed;z-index:30;left:0;right:0;top:0;
-  padding:calc(8px + env(safe-area-inset-top)) 10px 8px;
-  min-height:62px;
-  background:linear-gradient(118deg,var(--header),var(--header2));
-  border-bottom:1px solid rgba(44,97,91,.12);
-  display:flex;align-items:center;gap:9px;color:#16474a;
-  box-shadow:0 5px 20px rgba(49,86,82,.08)
-}
-.top-logo{
-  width:38px;height:38px;border-radius:10px;flex:0 0 38px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:#0b2930;overflow:hidden;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)
-}
-.top-logo svg{width:27px;height:25px;display:block;flex:0 0 auto;margin-top:1px}
-.top-logo-text{
-  margin-top:-1px;color:#fff;font:900 6.8px/1 "Segoe UI",Arial,sans-serif;
-  letter-spacing:.18px;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.32)
-}
-.top-title{display:flex;flex-direction:column;line-height:1.05;min-width:0}
-.top-title b{font:800 17px "Segoe UI",sans-serif;letter-spacing:.5px}
-.top-title span{font-size:8px;letter-spacing:1.3px;color:#52706e;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.top-state{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:3px;font-size:9px;font-weight:700;white-space:nowrap}
-.top-state-row{display:flex;align-items:center;gap:5px}
-.top-version{font-size:7px;letter-spacing:.55px;color:#52706e;font-weight:800}
-.top-signature{font-size:9px;line-height:1.05;color:#315d5b;font-family:"Segoe Script","Brush Script MT","Apple Chancery",cursive;font-style:italic;font-weight:600;letter-spacing:.2px}
-.dot{width:7px;height:7px;border-radius:50%;background:#29a979;box-shadow:0 0 0 3px rgba(41,169,121,.13)}
-.mobile-main{padding:calc(78px + env(safe-area-inset-top)) 12px calc(28px + env(safe-area-inset-bottom));max-width:720px;margin:auto}
-.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:5px 2px 12px}
-.section-head small{display:block;font-size:8px;letter-spacing:1.4px;font-weight:800;color:var(--accent)}
-.section-head h1{font-size:20px;line-height:1.15;margin:3px 0 0;font-weight:800}
-.unit-pill{flex:0 0 auto;border-radius:999px;padding:6px 10px;background:var(--accent-soft);color:var(--accent-dark);font-size:9px;font-weight:800;border:1px solid #cde6e2}
-.calc-card,.total-card{
-  background:var(--card);border:1px solid var(--line);border-radius:16px;
-  padding:12px;box-shadow:0 5px 18px rgba(25,60,60,.04);margin-bottom:10px
-}
-.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:11px}
-.card-title-block{min-width:0;flex:1 1 auto}
-.card-head small{display:block;font-size:8px;letter-spacing:1.25px;font-weight:800;color:var(--accent)}
-.title-line{display:flex;align-items:center;gap:8px;min-width:0;margin-top:3px;flex-wrap:wrap}
-.card-head h2{font-size:15px;margin:0;line-height:1.2;flex:0 0 auto}
-.formula-tag{flex:0 1 auto;border:1px solid var(--line);border-radius:999px;background:#f7faf9;color:#52686a;padding:5px 8px;font-size:9px;font-weight:750;white-space:nowrap}
-.formula-tag.long{white-space:normal;text-align:left;line-height:1.35;max-width:100%}
-.entry-controls{display:flex;align-items:center;gap:5px;flex:0 0 auto;margin-top:13px}
-.entry-btn{
-  width:28px;height:28px;border-radius:9px;border:1px solid #cfe2df;background:#f7fbfa;
-  color:var(--accent-dark);font:800 18px/1 "Segoe UI",sans-serif;display:grid;place-items:center;padding:0;
-  box-shadow:0 2px 8px rgba(25,60,60,.04);touch-action:manipulation
-}
-.entry-btn:active{background:#e9f5f3}
-.entry-btn:disabled{opacity:.35;cursor:default}
-.entry-list{display:grid;gap:8px}
-.entry-row{border:1px solid #e6efed;border-radius:13px;padding:9px;background:#fbfdfd}
-.entry-row:first-child{background:#fff}
-.entry-label{font-size:8px;line-height:1;font-weight:800;letter-spacing:1px;color:var(--accent);margin:0 2px 7px}
-.fields{display:grid;gap:8px}
-.fields.four{grid-template-columns:repeat(4,minmax(0,1fr))}
-.fields.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.fields.two{grid-template-columns:repeat(2,minmax(0,1fr))}
-.field{display:block;min-width:0}
-.field span{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:9px;font-weight:800;color:#536568;margin:0 2px 5px}
-.field small{font-size:8px;color:#8a989a;font-weight:700}
-.field input{
-  width:100%;height:44px;border:1px solid var(--line);border-radius:12px;background:#ffffff;
-  color:var(--text);padding:0 11px;outline:none;font-size:16px;font-weight:700;
-  appearance:textfield;-moz-appearance:textfield
-}
-.field input::-webkit-outer-spin-button,.field input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-.field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(15,143,134,.08)}
-.field input::placeholder{color:#b7c3c4;font-weight:500}
-.result-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;padding-top:10px;border-top:1px solid #edf2f1}
-.result-copy span{display:block;font-size:8px;letter-spacing:1.1px;font-weight:800;color:var(--accent)}
-.result-copy b{display:block;font-size:10px;color:var(--muted);margin-top:3px}
-.result-value{text-align:right;color:var(--accent-dark);font:800 21px/1.05 "Segoe UI",sans-serif;letter-spacing:-.2px}
-.result-value small{font-size:10px;color:var(--muted);font-weight:700;margin-left:3px}
-.total-card{padding:13px;background:linear-gradient(180deg,#ffffff,#f7fbfa);border-color:#cfe2df}
-.total-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}
-.total-label small{display:block;font-size:8px;letter-spacing:1.4px;font-weight:800;color:var(--accent)}
-.total-label h2{font-size:17px;margin:3px 0 0}
-.total-label p{font-size:9px;color:var(--muted);margin:5px 0 0;line-height:1.45}
-.total-value{font:800 28px/1 "Segoe UI",sans-serif;color:var(--accent-dark);text-align:right;white-space:nowrap}
-.total-value small{display:block;font-size:9px;color:var(--muted);margin-top:5px;letter-spacing:.6px}
-.actions{display:grid;grid-template-columns:1fr;gap:8px;margin-top:4px}
-.secondary{border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-weight:750;background:#f6f9f9;color:#30494a;min-height:44px}
-.secondary:active{background:#edf5f4}
-.status-line{min-height:18px;margin:3px 2px 10px;font-size:9px;color:var(--muted);display:flex;align-items:center;gap:6px}
-.status-line .mini-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-@media(max-width:560px){
-  .fields.four{grid-template-columns:1fr 1fr}
-}
-@media(max-width:430px){
-  .fields.three{grid-template-columns:1fr 1fr}.fields.three .field:last-child{grid-column:1/-1}
-  .title-line{gap:6px}
-  .formula-tag{font-size:8px;padding:5px 7px}
-  .formula-tag.long{max-width:100%;font-size:8px}
-}
-@media(max-width:350px){
-  .mobile-main{padding-left:8px;padding-right:8px}.fields.four,.fields.three,.fields.two{grid-template-columns:1fr}.fields.three .field:last-child{grid-column:auto}
-  .top-title b{font-size:15px}.top-title span{font-size:7px}.total-grid{grid-template-columns:1fr}.total-value{text-align:left}
-  .card-head{gap:6px}.title-line{gap:5px}.formula-tag.long{max-width:100%}
-  .entry-btn{width:26px;height:26px}
-}
+:root{--navy:#0b2d47;--navy2:#103c5c;--teal:#1fc9c3;--teal2:#0ea8a3;--bg:#eef5f8;--card:#fff;--ink:#102b3a;--muted:#728997;--line:#d8e5eb;--danger:#c94c59;--shadow:0 14px 34px rgba(17,52,73,.12)}
+*{box-sizing:border-box}html{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Segoe UI,sans-serif;color:var(--ink)}body{margin:0;background:linear-gradient(180deg,#f8fbfc 0,#eef5f8 35%,#e9f1f5 100%);min-height:100vh}.app{max-width:1180px;margin:auto;padding:0 18px 30px}.hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:white;margin:0 -18px 26px;padding:calc(18px + env(safe-area-inset-top)) 20px 22px;border-radius:0 0 26px 26px;box-shadow:0 14px 34px rgba(8,39,63,.2)}.top{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}.brand{display:flex;gap:12px;align-items:center}.brand-icon{width:56px;height:56px;border-radius:16px;overflow:hidden;background:#06243a;border:1px solid rgba(255,255,255,.24);flex:0 0 auto}.brand-icon img{width:100%;height:100%;display:block}.eyebrow{font-size:11px;font-weight:900;letter-spacing:.13em;color:#75eee8}.hero h1{font-size:30px;line-height:1.12;margin:3px 0 5px;letter-spacing:-.04em}.subtitle{font-size:13px;color:#d7e8f1}.version{display:inline-block;margin-top:8px;padding:5px 9px;border-radius:999px;border:1px solid rgba(117,238,232,.3);background:rgba(117,238,232,.1);font-size:10px;font-weight:800;color:#a1f2ee}.btn{border:0;border-radius:11px;font-weight:850;cursor:pointer;font:inherit;font-size:13px;line-height:1.1;min-height:40px;padding:0 12px;white-space:nowrap}.btn:active{transform:translateY(1px)}.btn-ghost{color:#fff;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.24)}.btn-primary{background:var(--teal2);color:#fff}.btn-secondary{background:#fff;color:var(--navy);border:1px solid var(--line)}.btn-danger{background:#fff4f5;color:var(--danger);border:1px solid #f0cbd0}.summary{margin-top:18px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1);padding:16px;border-radius:18px}.summary-row{display:flex;justify-content:space-between;align-items:end;gap:12px}.summary small{display:block;color:#cce0ea;font-weight:750}.summary strong{display:block;font-size:30px;margin-top:3px}.pill{padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.13);font-size:11px;font-weight:850}.progress{height:9px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;margin-top:12px}.progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#30e1d9,#70f2ea);border-radius:inherit}.next{font-size:12px;margin-top:10px;color:#dcebf2}.section-title{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:0 2px 12px}.section-title .left small{font-size:11px;font-weight:900;letter-spacing:.12em;color:var(--teal2)}.section-title h2{font-size:22px;margin:3px 0 0}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.hint{font-size:12px;color:var(--muted)}.flow-wrap{overflow-x:auto;padding:3px 1px 9px;scrollbar-width:thin}.flow{display:flex;align-items:stretch;gap:28px;min-width:max-content}.stage{position:relative;width:178px;min-height:190px;background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px;cursor:pointer;transition:.16s}.stage:after{content:'→';position:absolute;right:-24px;top:78px;font-size:22px;color:#86a1b0;font-weight:900}.stage:last-child:after{display:none}.stage.active{border-color:var(--teal2);box-shadow:0 0 0 3px rgba(31,201,195,.12),var(--shadow)}.stage.locked{opacity:.68}.stage.complete{border-color:#8adbd6}.step{font-size:10px;font-weight:900;color:var(--teal2);letter-spacing:.08em}.stage h3{font-size:15px;line-height:1.4;margin:12px 0 6px}.stage p{font-size:11px;line-height:1.5;color:var(--muted);margin:0;min-height:49px}.mini{margin-top:12px}.mini-row{display:flex;justify-content:space-between;font-size:10px;font-weight:850;margin-bottom:5px}.mini-bar{height:6px;background:#e9f0f3;border-radius:999px;overflow:hidden}.mini-bar i{display:block;height:100%;background:var(--teal2)}.card-delete{position:absolute;right:10px;top:10px;border:0;background:#fff3f4;color:var(--danger);border-radius:999px;font-size:10px;font-weight:850;padding:6px 8px;cursor:pointer}.detail{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden;min-height:220px}.detail-head{padding:18px;background:linear-gradient(180deg,#fbfefe,#f3f9fa);border-bottom:1px solid #e7eef2}.detail-head-row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.detail-step{font-size:11px;color:var(--teal2);font-weight:900;letter-spacing:.08em}.detail h3{font-size:21px;margin:4px 0 5px}.detail-desc{font-size:12px;color:var(--muted);line-height:1.6;margin:0}.detail-percent{font-size:23px;font-weight:900;color:var(--navy)}.detail-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.checklist{list-style:none;margin:0;padding:8px 12px 14px}.check{display:flex;align-items:center;gap:8px;border-bottom:1px solid #edf2f5}.check:last-child{border-bottom:0}.check label{display:flex;align-items:flex-start;gap:12px;padding:13px 8px;flex:1;min-width:0;cursor:pointer}.check input{width:23px;height:23px;accent-color:var(--teal2);margin:1px 0 0;flex:0 0 auto}.copy strong{display:block;font-size:14px;line-height:1.4}.copy span{display:block;margin-top:3px;font-size:11px;line-height:1.5;color:var(--muted)}.check input:checked~.copy strong{text-decoration:line-through;color:#658176}.task-actions{display:flex;gap:5px;align-items:center;flex:0 0 auto}.task-edit,.task-delete{font-weight:850;border-radius:9px;min-height:34px;padding:0 9px;font-size:11px;cursor:pointer;white-space:nowrap}.task-edit{border:1px solid #cddfe8;background:#f5fafc;color:var(--navy)}.task-delete{border:1px solid #f0cbd0;background:#fff;color:var(--danger)}.locked-note{margin:12px 18px 0;background:#fff8e8;border:1px solid #f1dfa9;color:#735b19;padding:10px 12px;border-radius:12px;font-size:11px}.empty{padding:36px 18px;text-align:center;color:var(--muted)}.empty strong{display:block;color:var(--ink);font-size:17px;margin-bottom:5px}.modal{position:fixed;inset:0;background:rgba(4,29,47,.56);display:none;align-items:flex-end;justify-content:center;padding:14px;z-index:50}.modal.show{display:flex}.modal-box{background:#fff;width:min(560px,100%);border-radius:22px;padding:18px;box-shadow:0 24px 70px rgba(3,26,43,.32)}.modal-top{display:flex;justify-content:space-between;align-items:center;gap:12px}.modal h3{margin:0;font-size:21px}.close{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:#f6fafb;font-size:21px;cursor:pointer}.field{display:block;font-size:12px;font-weight:850;color:var(--navy);margin:14px 0 6px}.input{width:100%;border:1px solid #cfdde5;border-radius:12px;font:inherit;font-size:16px;padding:11px 12px;outline:0}.input:focus{border-color:var(--teal2);box-shadow:0 0 0 3px rgba(31,201,195,.13)}textarea.input{resize:vertical;min-height:90px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}.footer{display:flex;justify-content:space-between;gap:12px;font-size:10px;color:#8498a4;padding:17px 3px calc(4px + env(safe-area-inset-bottom))}.footer b{color:var(--navy)}
+@media(max-width:720px){.app{padding:0 12px 22px}.hero{margin:0 -12px 18px;padding-left:14px;padding-right:14px;padding-bottom:18px}.brand-icon{width:46px;height:46px;border-radius:13px}.hero h1{font-size:25px;margin-top:1px}.subtitle{font-size:12px;line-height:1.45;margin-top:4px}.version{margin-top:6px;padding:4px 8px;font-size:9px}.summary{margin-top:14px;padding:13px;border-radius:16px}.summary strong{font-size:26px}.summary-row{align-items:center}.pill{padding:6px 9px}.progress{height:7px;margin-top:9px}.next{font-size:11px;margin-top:8px}.section-title{align-items:center;margin-bottom:10px}.section-title h2{font-size:19px}.section-title .left small{font-size:9px}.hint{display:none}.flow{gap:22px}.stage{width:154px;min-height:176px;padding:13px;border-radius:17px}.stage:after{right:-20px;top:72px}.stage h3{font-size:14px;margin:10px 0 5px}.stage p{font-size:10px;min-height:45px}.card-delete{right:8px;top:8px;padding:5px 7px;font-size:9px}.detail{border-radius:17px;margin-top:11px}.detail-head{padding:14px}.detail h3{font-size:18px}.detail-desc{font-size:11px}.detail-percent{font-size:20px}.detail-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px;margin-top:10px}.checklist{padding:6px 8px 12px}.check{gap:4px}.check label{gap:9px;padding:11px 5px}.check input{width:21px;height:21px}.copy strong{font-size:13px}.copy span{font-size:10px}.footer{flex-direction:column;padding-top:14px}.btn{min-height:38px;padding:0 11px;font-size:12px;border-radius:10px}.top{gap:9px}.top>div:first-child{min-width:0}#resetBtn{min-height:36px;padding:0 9px;font-size:11px;border-radius:10px;flex:0 0 auto}.modal{padding:6px}.modal-box{border-radius:18px 18px 12px 12px;padding:14px}.modal h3{font-size:18px}.modal-actions{gap:7px;margin-top:13px}.input{padding:9px 10px}.field{margin-top:11px}textarea.input{min-height:76px}.close{width:36px;height:36px}.task-edit,.task-delete{min-height:34px;padding:0 7px;font-size:10px}.task-actions{gap:4px}#addTaskBtn{grid-column:1/-1}}
+@media(max-width:390px){.app{padding-left:10px;padding-right:10px}.hero{margin-left:-10px;margin-right:-10px;padding-left:12px;padding-right:12px}.brand{gap:9px}.brand-icon{width:44px;height:44px}.hero h1{font-size:24px}.eyebrow{font-size:9px}.subtitle{font-size:11px}.section-title{gap:8px}.actions{gap:6px}.stage{width:150px}.detail-actions .btn{padding-left:8px;padding-right:8px;font-size:11px}.check label{padding-left:3px}.task-actions{margin-right:2px}.task-edit,.task-delete{height:32px;min-height:32px;padding:0 6px;font-size:9px}}
 
-/* V1.0.13 tab + replenishment calculator */
-.app-tabs{
-  display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:0 0 12px;padding:4px;
-  border:1px solid #cfe2df;border-radius:14px;background:#eaf4f2;box-shadow:0 4px 14px rgba(25,60,60,.04)
+/* iPhone 13 mini (375px CSS width) compact control tuning */
+@media(max-width:390px){
+  #resetBtn{height:34px;min-height:34px;padding:0 10px;font-size:11px;line-height:34px}
+  #addStageBtn{height:36px;min-height:36px;padding:0 12px;font-size:11px;line-height:36px;border-radius:10px}
+  .detail-actions .btn{height:36px;min-height:36px;padding:0 8px;font-size:11px;line-height:36px;border-radius:10px}
+  .task-edit,.task-delete{height:32px;min-height:32px;padding:0 7px;font-size:10px;line-height:30px;border-radius:9px}
+  .modal-actions .btn{height:36px;min-height:36px;padding:0 12px;font-size:12px;line-height:36px}
+  .section-title{align-items:center}
+  .section-title h2{line-height:1.15}
+  .actions{flex:0 0 auto}
 }
-.app-tab{
-  min-height:38px;border:0;border-radius:10px;background:transparent;color:#587073;
-  font-size:12px;font-weight:850;letter-spacing:-.1px;touch-action:manipulation
-}
-.app-tab.active{background:#fff;color:var(--accent-dark);box-shadow:0 3px 10px rgba(25,60,60,.09)}
-.app-panel{display:none}
-.app-panel.active{display:block}
-.repl-card{
-  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;
-  box-shadow:0 5px 18px rgba(25,60,60,.04);margin-bottom:10px
-}
-.repl-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:11px}
-.repl-card-head small{display:block;font-size:8px;letter-spacing:1.25px;font-weight:800;color:var(--accent)}
-.repl-card-head h2{font-size:15px;margin:3px 0 0;line-height:1.2}
-.choice-group{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px}
-.choice{position:relative;display:inline-flex;min-width:0}
-.choice input{position:absolute;opacity:0;pointer-events:none}
-.choice span{
-  display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 11px;border-radius:10px;
-  border:1px solid var(--line);background:#f7faf9;color:#607477;font-size:10px;font-weight:800;white-space:nowrap
-}
-.choice input:checked + span{background:var(--accent-soft);border-color:#9fd4ce;color:var(--accent-dark);box-shadow:inset 0 0 0 1px rgba(15,143,134,.06)}
-.repl-grid{display:grid;gap:8px;grid-template-columns:repeat(2,minmax(0,1fr))}
-.repl-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.repl-field{display:block;min-width:0}
-.repl-field > span{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:9px;font-weight:800;color:#536568;margin:0 2px 5px}
-.repl-field small{font-size:8px;color:#8a989a;font-weight:700}
-.repl-field input{
-  width:100%;height:44px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--text);
-  padding:0 11px;outline:none;font-size:16px;font-weight:700;appearance:textfield;-moz-appearance:textfield
-}
-.repl-field input::-webkit-outer-spin-button,.repl-field input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-.repl-field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(15,143,134,.08)}
-.repl-field input::placeholder{color:#b7c3c4;font-weight:500}
-.repl-help{margin:8px 2px 0;font-size:8px;line-height:1.5;color:#809092}
-.repl-inline-result{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px;padding:8px 10px;border-radius:11px;background:#f4f9f8;border:1px solid #e1eeec}
-.repl-inline-result span{font-size:9px;color:#6c7e80;font-weight:750}
-.repl-inline-result b{font-size:13px;color:var(--accent-dark)}
-.conditional.hidden{display:none}
-.repl-results{padding:13px;background:linear-gradient(180deg,#fff,#f7fbfa);border-color:#cfe2df}
-.repl-result-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
-.repl-result-top h2{font-size:17px;margin:0}
-.repl-mode-badge{border-radius:999px;padding:6px 9px;background:var(--accent-soft);color:var(--accent-dark);font-size:9px;font-weight:850;border:1px solid #cde6e2}
-.repl-result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
-.repl-metric{min-width:0;border:1px solid #e4eeec;border-radius:12px;background:#fff;padding:9px}
-.repl-metric span{display:block;font-size:8px;font-weight:800;color:#7a8b8e;margin-bottom:5px}
-.repl-metric b{display:block;font-size:15px;color:#23494a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.repl-metric.primary{border-color:#b9ddd8;background:#f3fbf9}
-.repl-metric.primary b{color:var(--accent-dark);font-size:18px}
-.repl-message{margin-top:9px;border-radius:11px;padding:9px 10px;background:#eef7f5;color:#476466;font-size:9px;line-height:1.5;border:1px solid #dcebe8}
-.repl-message.error{background:#fff4f2;color:#9d4338;border-color:#f1d3ce}
-.repl-actions{display:grid;grid-template-columns:1fr;margin-top:4px}
-@media(max-width:430px){
-  .repl-grid.three{grid-template-columns:1fr 1fr}.repl-grid.three .repl-field:last-child{grid-column:1/-1}
-}
-@media(max-width:350px){
-  .repl-grid,.repl-grid.three,.repl-result-grid{grid-template-columns:1fr}.repl-grid.three .repl-field:last-child{grid-column:auto}
-  .choice span{padding:0 8px;font-size:9px}
-}
-
 </style>
 </head>
 <body>
-<header class="topbar">
-  <div class="top-logo" aria-hidden="true">
-    <svg viewBox="0 0 64 64">
-      <polyline points="10,24 32,12 54,24 32,36 10,24" fill="none" stroke="#68eadc" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
-      <polyline points="15,35 32,44 49,35" fill="none" stroke="#319fe8" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
-      <polyline points="19,45 32,52 45,45" fill="none" stroke="#3b9a94" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
-      <circle cx="32" cy="12" r="3.6" fill="#85f4e7"/><circle cx="54" cy="24" r="3.6" fill="#3babef"/>
-    </svg>
-    <span class="top-logo-text">S.A.C</span>
+<div class="app">
+<header class="hero">
+  <div class="top">
+    <div>
+      <div class="brand">
+        <div class="brand-icon"><img id="brandIcon" alt="C.D.F icon" src="CDF_ICON.png"></div>
+        <div><div class="eyebrow">COTEC DEVELOPMENT FLOW</div><h1>C.D.F</h1></div>
+      </div>
+      <div class="subtitle">통합 개발 진행관리 · 4개 프로그램 완성부터 통합 AI 분석까지</div>
+      <span class="version">C.D.F · FLOWCHART V2.1.3</span>
+    </div>
+    <button id="resetBtn" class="btn btn-ghost" type="button">체크 초기화</button>
   </div>
-  <div class="top-title"><b>S.A.C</b><span>SURFACE AREA CALCULATOR</span></div>
-  <div class="top-state"><div class="top-state-row"><span class="dot"></span><span>AUTO CALC</span></div><span class="top-version">VERSION 1.0.14</span><span class="top-signature">T.S.HWANG</span></div>
+  <section class="summary">
+    <div class="summary-row"><div><small>전체 진행률</small><strong id="overallPercent">0%</strong></div><span class="pill" id="overallCount">0 / 44 완료</span></div>
+    <div class="progress"><i id="overallBar" style="width:0%"></i></div>
+    <div class="next" id="nextAction">다음 작업: STEP 1 · 개별 프로그램 완성</div>
+  </section>
 </header>
 
-<main class="mobile-main">
-  <div class="app-tabs" role="tablist" aria-label="계산기 선택">
-    <button id="surfaceTab" class="app-tab active" type="button" role="tab" aria-selected="true" data-tab-target="surface">표면적 계산</button>
-    <button id="replenishmentTab" class="app-tab" type="button" role="tab" aria-selected="false" data-tab-target="replenishment">보충량 계산</button>
-  </div>
-  <section id="surfacePanel" class="app-panel active" role="tabpanel" aria-labelledby="surfaceTab">
-  <div class="section-head">
-    <div><h1>표면적 계산기</h1></div>
-    <div class="unit-pill">mm → dm²</div>
-  </div>
-
-  <section class="calc-card" aria-labelledby="formula1Title">
-    <div class="card-head">
-      <div class="card-title-block"><small>계산식 01</small><div class="title-line"><h2 id="formula1Title">원통 측면적</h2><div class="formula-tag">지름 × 3.14 × 높이</div></div></div>
-      <div class="entry-controls" aria-label="원통 항목 추가 및 삭제">
-        <button type="button" class="entry-btn" data-remove="cylinder" aria-label="원통 항목 삭제">−</button>
-        <button type="button" class="entry-btn" data-add="cylinder" aria-label="원통 항목 추가">+</button>
-      </div>
-    </div>
-    <div class="entry-list" data-group="cylinder">
-      <div class="entry-row" data-entry="cylinder">
-        <div class="entry-label">항목 1</div>
-        <div class="fields three">
-          <label class="field"><span>지름 <small>mm</small></span><input id="diameter" data-field="diameter" type="number" inputmode="decimal" step="any" placeholder="0" autocomplete="off"></label>
-          <label class="field"><span>높이 <small>mm</small></span><input id="height" data-field="height" type="number" inputmode="decimal" step="any" placeholder="0" autocomplete="off"></label>
-          <label class="field"><span>수량 <small>EA</small></span><input id="cylinderQty" data-field="qty" type="number" inputmode="numeric" step="1" placeholder="1" autocomplete="off"></label>
-        </div>
-      </div>
-    </div>
-    <div class="result-row">
-      <div class="result-copy"><span>계산 결과 01</span><b>원통 측면적 합계</b></div>
-      <output id="cylinderResult" class="result-value" aria-live="polite">0.0000 <small>dm²</small></output>
-    </div>
+<main>
+  <section class="section-title">
+    <div class="left"><small>ROADMAP</small><h2>개발 FLOW</h2></div>
+    <div class="actions"><span class="hint">STEP을 누르면 세부 체크리스트가 열립니다.</span><button id="addStageBtn" class="btn btn-primary" type="button">+ STEP 신규등록</button></div>
   </section>
 
-  <section class="calc-card" aria-labelledby="formula2Title">
-    <div class="card-head">
-      <div class="card-title-block"><small>계산식 02</small><div class="title-line"><h2 id="formula2Title">원 면적</h2><div class="formula-tag">반지름 × 반지름 × 3.14</div></div></div>
-      <div class="entry-controls" aria-label="원 항목 추가 및 삭제">
-        <button type="button" class="entry-btn" data-remove="circle" aria-label="원 항목 삭제">−</button>
-        <button type="button" class="entry-btn" data-add="circle" aria-label="원 항목 추가">+</button>
-      </div>
-    </div>
-    <div class="entry-list" data-group="circle">
-      <div class="entry-row" data-entry="circle">
-        <div class="entry-label">항목 1</div>
-        <div class="fields two">
-          <label class="field"><span>반지름 <small>mm</small></span><input id="radius" data-field="radius" type="number" inputmode="decimal" step="any" placeholder="0" autocomplete="off"></label>
-          <label class="field"><span>수량 <small>EA</small></span><input id="circleQty" data-field="qty" type="number" inputmode="numeric" step="1" placeholder="1" autocomplete="off"></label>
-        </div>
-      </div>
-    </div>
-    <div class="result-row">
-      <div class="result-copy"><span>계산 결과 02</span><b>원 면적 합계</b></div>
-      <output id="circleResult" class="result-value" aria-live="polite">0.0000 <small>dm²</small></output>
-    </div>
+  <div class="flow-wrap"><div id="flow" class="flow" aria-label="개발 단계">
+    <article class="stage active" data-stage-id="step1"><span class="step">STEP 1</span><h3>개별 프로그램 완성</h3><p>MES·ACPT·JIG·두께 시뮬레이터를 각각 단독 사용 가능한 수준으로 완성합니다.</p><div class="mini"><div class="mini-row"><span>0%</span><span>0/10</span></div><div class="mini-bar"><i style="width:0%"></i></div></div></article>
+    <article class="stage locked" data-stage-id="step2"><span class="step">STEP 2</span><h3>공통 데이터 기준</h3><p>제품번호·도금종류·LOT·LINE·TANK·JIG 식별기준을 통일합니다.</p><div class="mini"><div class="mini-row"><span>0%</span><span>0/7</span></div><div class="mini-bar"><i style="width:0%"></i></div></div></article>
+    <article class="stage locked" data-stage-id="step3"><span class="step">STEP 3</span><h3>데이터 연동</h3><p>MES를 중심으로 ACPT·JIG·시뮬레이터 간 데이터 전달을 연결합니다.</p><div class="mini"><div class="mini-row"><span>0%</span><span>0/6</span></div><div class="mini-bar"><i style="width:0%"></i></div></div></article>
+    <article class="stage locked" data-stage-id="step4"><span class="step">STEP 4</span><h3>생산 FLOW 완성</h3><p>작업지시부터 설계·예측·기술검토·생산·결과저장까지 하나로 연결합니다.</p><div class="mini"><div class="mini-row"><span>0%</span><span>0/7</span></div><div class="mini-bar"><i style="width:0%"></i></div></div></article>
+    <article class="stage locked" data-stage-id="step5"><span class="step">STEP 5</span><h3>데이터 축적 / 검증</h3><p>예측값과 실제값을 비교해 모델과 공정 개선에 필요한 데이터를 누적합니다.</p><div class="mini"><div class="mini-row"><span>0%</span><span>0/7</span></div><div class="mini-bar"><i style="width:0%"></i></div></div></article>
+    <article class="stage locked" data-stage-id="step6"><span class="step">STEP 6</span><h3>통합 AI 분석</h3><p>연결된 데이터를 기반으로 통합 조회·비교·원인분석·권고 기능을 추가합니다.</p><div class="mini"><div class="mini-row"><span>0%</span><span>0/7</span></div><div class="mini-bar"><i style="width:0%"></i></div></div></article>
+  </div></div>
+
+  <section id="detail" class="detail" aria-live="polite">
+    <div class="detail-head"><div class="detail-head-row"><div><div class="detail-step">STEP 1</div><h3>4개 프로그램 단독 기능 완성</h3><p class="detail-desc">각 프로그램을 다른 프로그램 도움 없이 단독으로 사용할 수 있는 상태까지 완성합니다.</p></div><div class="detail-percent">0%</div></div><div class="detail-actions"><button class="btn btn-secondary" type="button">+ 체크리스트 신규등록</button><button class="btn btn-secondary" type="button">STEP 수정</button><button class="btn btn-danger" type="button">STEP 삭제</button></div></div>
+    <ul class="checklist">
+      <li class="check"><label><input type="checkbox"><span class="copy"><strong>MES 핵심 기능 안정화</strong><span>수주·생산·작업지시·LOT·실적 기능의 오류와 누락 항목을 정리합니다.</span></span></label></li>
+      <li class="check"><label><input type="checkbox"><span class="copy"><strong>MES 용액분석 / 원가 / 품질 기능 점검</strong><span>별도 관리 프로그램 없이 MES 내부에서 관리 가능한 상태인지 확인합니다.</span></span></label></li>
+      <li class="check"><label><input type="checkbox"><span class="copy"><strong>ACPT 기술지식 / 교육 기능 안정화</strong><span>도금별 지식, 교육, 질의 기능이 정상 동작하는지 확인합니다.</span></span></label></li>
+      <li class="check"><label><input type="checkbox"><span class="copy"><strong>ACPT 탱크 / 공정 / 설비 정보 입력 구조 완성</strong><span>LINE·TANK와 공정 기술정보를 입력·조회할 수 있도록 준비합니다.</span></span></label></li>
+    </ul>
   </section>
-
-  <section class="calc-card" aria-labelledby="formula3Title">
-    <div class="card-head">
-      <div class="card-title-block"><small>계산식 03</small><div class="title-line"><h2 id="formula3Title">직육면체 표면적</h2><div class="formula-tag long">(가로×세로 + 가로×높이 + 세로×높이) X 2</div></div></div>
-      <div class="entry-controls" aria-label="직육면체 항목 추가 및 삭제">
-        <button type="button" class="entry-btn" data-remove="box" aria-label="직육면체 항목 삭제">−</button>
-        <button type="button" class="entry-btn" data-add="box" aria-label="직육면체 항목 추가">+</button>
-      </div>
-    </div>
-    <div class="entry-list" data-group="box">
-      <div class="entry-row" data-entry="box">
-        <div class="entry-label">항목 1</div>
-        <div class="fields four">
-          <label class="field"><span>가로 <small>mm</small></span><input id="boxWidth" data-field="width" type="number" inputmode="decimal" step="any" placeholder="0" autocomplete="off"></label>
-          <label class="field"><span>세로 <small>mm</small></span><input id="boxDepth" data-field="depth" type="number" inputmode="decimal" step="any" placeholder="0" autocomplete="off"></label>
-          <label class="field"><span>높이 <small>mm</small></span><input id="boxHeight" data-field="height" type="number" inputmode="decimal" step="any" placeholder="0" autocomplete="off"></label>
-          <label class="field"><span>수량 <small>EA</small></span><input id="boxQty" data-field="qty" type="number" inputmode="numeric" step="1" placeholder="1" autocomplete="off"></label>
-        </div>
-      </div>
-    </div>
-    <div class="result-row">
-      <div class="result-copy"><span>계산 결과 03</span><b>직육면체 6면 표면적 합계</b></div>
-      <output id="boxResult" class="result-value" aria-live="polite">0.0000 <small>dm²</small></output>
-    </div>
-  </section>
-
-  <div id="statusLine" class="status-line" aria-live="polite"><span class="mini-dot"></span><span>값을 입력하면 결과가 자동으로 계산됩니다.</span></div>
-
-  <section class="total-card" aria-labelledby="totalTitle">
-    <div class="total-grid">
-      <div class="total-label"><small>통합 결과</small><h2 id="totalTitle">총 표면적</h2><p>원통 측면적 + 원 면적 + 직육면체 6면 표면적</p></div>
-      <output id="totalResult" class="total-value" aria-live="polite">0.0000<small>dm²</small></output>
-    </div>
-  </section>
-
-  <div class="actions"><button id="resetButton" type="button" class="secondary">입력값 초기화</button></div>
-
-  </section>
-
-  <section id="replenishmentPanel" class="app-panel" role="tabpanel" aria-labelledby="replenishmentTab">
-    <div class="section-head">
-      <div><h1>보충량 계산기</h1></div>
-      <div class="unit-pill">농도 g/L</div>
-    </div>
-
-    <section class="repl-card" aria-labelledby="tankInfoTitle">
-      <div class="repl-card-head"><div><small>STEP 01</small><h2 id="tankInfoTitle">탱크 정보</h2></div></div>
-      <div class="choice-group" aria-label="탱크 용량 입력 방식">
-        <label class="choice"><input type="radio" name="tankMode" value="direct" checked><span>용량 직접 입력</span></label>
-        <label class="choice"><input type="radio" name="tankMode" value="dimensions"><span>탱크 치수 입력</span></label>
-      </div>
-
-      <div id="directTankFields" class="conditional">
-        <div class="repl-grid">
-          <label class="repl-field"><span>탱크 용량 <small>L</small></span><input id="tankVolumeL" type="number" inputmode="decimal" min="0" step="any" placeholder="2400" autocomplete="off"></label>
-          <div class="repl-field"><span>현재 적용 용량 <small>L</small></span><div class="repl-inline-result"><span>계산 기준</span><b id="directVolumeEcho">0.00 L</b></div></div>
-        </div>
-        <p class="repl-help">배출 수위(mm)도 계산하려면 아래 탱크 바닥 치수를 선택 입력하십시오.</p>
-        <div class="repl-grid">
-          <label class="repl-field"><span>바닥 가로 <small>mm</small></span><input id="directTankWidthMm" type="number" inputmode="decimal" min="0" step="any" placeholder="2000" autocomplete="off"></label>
-          <label class="repl-field"><span>바닥 세로 <small>mm</small></span><input id="directTankDepthMm" type="number" inputmode="decimal" min="0" step="any" placeholder="900" autocomplete="off"></label>
-        </div>
-      </div>
-
-      <div id="dimensionTankFields" class="conditional hidden">
-        <div class="repl-grid three">
-          <label class="repl-field"><span>가로 <small>mm</small></span><input id="tankWidthMm" type="number" inputmode="decimal" min="0" step="any" placeholder="2000" autocomplete="off"></label>
-          <label class="repl-field"><span>세로 <small>mm</small></span><input id="tankDepthMm" type="number" inputmode="decimal" min="0" step="any" placeholder="900" autocomplete="off"></label>
-          <label class="repl-field"><span>액 높이 <small>mm</small></span><input id="liquidHeightMm" type="number" inputmode="decimal" min="0" step="any" placeholder="1000" autocomplete="off"></label>
-        </div>
-        <div class="repl-inline-result"><span>자동 계산 탱크 용량</span><b id="computedTankVolume">0.00 L</b></div>
-      </div>
-    </section>
-
-    <section class="repl-card" aria-labelledby="concentrationTitle">
-      <div class="repl-card-head"><div><small>STEP 02</small><h2 id="concentrationTitle">농도 조건</h2></div></div>
-      <div class="repl-grid">
-        <label class="repl-field"><span>현재 농도 <small>g/L</small></span><input id="currentGpl" type="number" inputmode="decimal" min="0" step="any" placeholder="0" autocomplete="off"></label>
-        <label class="repl-field"><span>목표 농도 <small>g/L</small></span><input id="targetGpl" type="number" inputmode="decimal" min="0" step="any" placeholder="0" autocomplete="off"></label>
-      </div>
-      <p class="repl-help">현재 농도가 높으면 폐수 후 순수 보충, 낮으면 약품 보충으로 자동 판정합니다.</p>
-    </section>
-
-    <section class="repl-card" aria-labelledby="chemicalTitle">
-      <div class="repl-card-head"><div><small>STEP 03</small><h2 id="chemicalTitle">보충 약품</h2></div></div>
-      <div class="choice-group" aria-label="약품 형태">
-        <label class="choice"><input type="radio" name="chemicalType" value="solid" checked><span>고형약품</span></label>
-        <label class="choice"><input type="radio" name="chemicalType" value="liquid"><span>액상약품</span></label>
-      </div>
-
-      <div id="solidChemicalFields" class="conditional">
-        <div class="repl-grid">
-          <label class="repl-field"><span>고형약품 순도 <small>%</small></span><input id="solidPurityPct" type="number" inputmode="decimal" min="0" max="100" step="any" placeholder="100" autocomplete="off"></label>
-        </div>
-        <p class="repl-help">순도를 비워두면 100%로 계산합니다.</p>
-      </div>
-
-      <div id="liquidChemicalFields" class="conditional hidden">
-        <div class="choice-group" aria-label="액상 원액 농도 입력 방식">
-          <label class="choice"><input type="radio" name="liquidConcentrationMode" value="gpl" checked><span>원액 g/L 입력</span></label>
-          <label class="choice"><input type="radio" name="liquidConcentrationMode" value="percent"><span>농도 % + 비중</span></label>
-        </div>
-
-        <div id="liquidGplFields" class="conditional">
-          <div class="repl-grid">
-            <label class="repl-field"><span>원액 유효농도 <small>g/L</small></span><input id="liquidStockGpl" type="number" inputmode="decimal" min="0" step="any" placeholder="0" autocomplete="off"></label>
-            <label class="repl-field"><span>비중 <small>SG</small></span><input id="specificGravityGpl" type="number" inputmode="decimal" min="0" step="any" placeholder="1.18" autocomplete="off"></label>
-          </div>
-        </div>
-
-        <div id="liquidPercentFields" class="conditional hidden">
-          <div class="repl-grid">
-            <label class="repl-field"><span>원액 농도 <small>wt%</small></span><input id="liquidWtPct" type="number" inputmode="decimal" min="0" max="100" step="any" placeholder="35" autocomplete="off"></label>
-            <label class="repl-field"><span>비중 <small>SG</small></span><input id="specificGravityPercent" type="number" inputmode="decimal" min="0" step="any" placeholder="1.18" autocomplete="off"></label>
-          </div>
-          <div class="repl-inline-result"><span>환산 원액 유효농도</span><b id="convertedStockGpl">0.00 g/L</b></div>
-        </div>
-
-        <div class="repl-card-head" style="margin-top:12px;margin-bottom:7px"><div><small>액상약품 입고/투입 단위</small></div></div>
-        <div class="choice-group" aria-label="액상약품 입고 또는 투입 단위">
-          <label class="choice"><input type="radio" name="liquidSupplyUnit" value="liter" checked><span>L 기준</span></label>
-          <label class="choice"><input type="radio" name="liquidSupplyUnit" value="kg"><span>kg 기준</span></label>
-        </div>
-        <div id="liquidKgSupplyFields" class="conditional hidden">
-          <div class="repl-grid">
-            <label class="repl-field"><span>액상약품 중량 <small>kg</small></span><input id="liquidInputKg" type="number" inputmode="decimal" min="0" step="any" placeholder="25" autocomplete="off"></label>
-          </div>
-          <div class="repl-inline-result"><span>비중 적용 환산 부피</span><b id="convertedLiquidVolume">0.00 L</b></div>
-          <p class="repl-help">kg ÷ 비중으로 L를 환산합니다. 입고 중량을 실제 투입 부피로 바꿀 때 사용합니다.</p>
-        </div>
-
-        <div class="repl-card-head" style="margin-top:12px;margin-bottom:7px"><div><small>액상 투입 방식</small></div></div>
-        <div class="choice-group" aria-label="액상 투입 후 용량 처리">
-          <label class="choice"><input type="radio" name="liquidVolumeMode" value="constant" checked><span>정용량 유지</span></label>
-          <label class="choice"><input type="radio" name="liquidVolumeMode" value="grow"><span>용량 증가 허용</span></label>
-        </div>
-        <p class="repl-help">정용량 유지는 약품 투입량만큼 기존 용액을 먼저 배출합니다.</p>
-      </div>
-    </section>
-
-    <section class="repl-card repl-results" aria-labelledby="replenishmentResultTitle">
-      <div class="repl-result-top"><h2 id="replenishmentResultTitle">계산 결과</h2><span id="replModeLabel" class="repl-mode-badge">입력 대기</span></div>
-      <div class="repl-result-grid">
-        <div class="repl-metric"><span>탱크 적용 용량</span><b id="replTankVolumeResult">0.00 L</b></div>
-        <div class="repl-metric"><span>최종 예상 용량</span><b id="replFinalVolumeResult">0.00 L</b></div>
-        <div class="repl-metric primary"><span>폐수량</span><b id="wasteResult">0.00 L</b></div>
-        <div class="repl-metric primary"><span>순수 보충량</span><b id="pureWaterResult">0.00 L</b></div>
-        <div class="repl-metric"><span>배출 수위</span><b id="dischargeMmResult">—</b></div>
-        <div class="repl-metric"><span>원액 유효농도</span><b id="stockGplResult">—</b></div>
-        <div class="repl-metric"><span>입고/투입 중량</span><b id="inputChemicalKgResult">—</b></div>
-        <div class="repl-metric"><span>kg 환산 부피</span><b id="inputChemicalLResult">—</b></div>
-        <div class="repl-metric"><span>kg 적용 배출량</span><b id="inputWasteResult">—</b></div>
-        <div class="repl-metric"><span>kg 적용 최종용량</span><b id="inputFinalVolumeResult">—</b></div>
-        <div class="repl-metric"><span>kg 적용 예상농도</span><b id="inputFinalGplResult">—</b></div>
-        <div class="repl-metric primary"><span>약품 보충량</span><b id="chemicalLResult">0.00 L</b></div>
-        <div class="repl-metric primary"><span>약품 보충량</span><b id="chemicalKgResult">0.000 kg</b></div>
-      </div>
-      <div id="replMessage" class="repl-message">탱크 용량과 현재/목표 농도를 입력하면 자동으로 계산됩니다.</div>
-    </section>
-
-    <div class="repl-actions"><button id="replenishmentResetButton" type="button" class="secondary">보충량 입력값 초기화</button></div>
-  </section>
-
 </main>
 
+<div id="modal" class="modal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-top"><h3 id="modalTitle">신규등록</h3><button id="modalClose" class="close" type="button" aria-label="닫기">×</button></div>
+    <form id="modalForm"><label class="field" id="nameLabel" for="nameInput">이름</label><input class="input" id="nameInput" maxlength="80" required><label class="field" id="descLabel" for="descInput">설명</label><textarea class="input" id="descInput" maxlength="240"></textarea><div class="modal-actions"><button id="modalCancel" class="btn btn-secondary" type="button">취소</button><button id="modalSubmit" class="btn btn-primary" type="submit">등록</button></div></form>
+  </div>
+</div>
+
+<div class="footer"><b>C.D.F · FLOWCHART</b><span>GitHub Pages에서 Safari → 공유 → 홈 화면에 추가로 설치합니다.</span></div>
+</div>
+
+<script id="defaultData" type="application/json">
+{"stages":[
+{"id":"step1","title":"4개 프로그램 단독 기능 완성","shortTitle":"개별 프로그램 완성","summary":"각 프로그램을 다른 프로그램 도움 없이 단독으로 사용할 수 있는 상태까지 완성합니다.","tasks":[
+{"id":"s1-1","label":"MES 핵심 기능 안정화","detail":"수주·생산·작업지시·LOT·실적 기능의 오류와 누락 항목을 정리합니다."},
+{"id":"s1-2","label":"MES 용액분석 / 원가 / 품질 기능 점검","detail":"별도 관리 프로그램 없이 MES 내부에서 관리 가능한 상태인지 확인합니다."},
+{"id":"s1-3","label":"ACPT 기술지식 / 교육 기능 안정화","detail":"도금별 지식, 교육, 질의 기능이 정상 동작하는지 확인합니다."},
+{"id":"s1-4","label":"ACPT 탱크 / 공정 / 설비 정보 입력 구조 완성","detail":"LINE·TANK와 공정 기술정보를 입력·조회할 수 있도록 준비합니다."},
+{"id":"s1-5","label":"ACPT 트러블슈팅 기능 고도화","detail":"제품→전처리→전기/화학→유동/여과→랙/양극→후처리 순서로 진단하도록 정리합니다."},
+{"id":"s1-6","label":"JIG 설계 기본 기능 완성","detail":"제품 배치, 수량, 간격, 접점, 지그 형상 검토 기능을 안정화합니다."},
+{"id":"s1-7","label":"JIG 전류용량 / 접점 검토 기능 보완","detail":"지그별 허용 전류와 접점 조건을 검토할 수 있도록 합니다."},
+{"id":"s1-8","label":"도금 두께 시뮬레이터 기본 해석 완성","detail":"제품 배치·전류·거리 조건에 따른 위치별 예상 두께를 계산합니다."},
+{"id":"s1-9","label":"시뮬레이터 실제 결과 비교용 기준 정리","detail":"향후 MES 실측값과 비교할 수 있도록 입력·출력 항목을 고정합니다."},
+{"id":"s1-10","label":"4개 프로그램 모바일 사용성 점검","detail":"iPhone 등 모바일 화면에서 핵심 조회와 입력이 가능한지 확인합니다."}]},
+{"id":"step2","title":"공통 데이터 기준 정의","shortTitle":"공통 데이터 기준","summary":"4개 프로그램이 같은 제품과 같은 작업을 동일하게 인식하도록 공통 키를 정합니다.","tasks":[
+{"id":"s2-1","label":"PART_ID / 제품번호 기준 확정","detail":"제품을 식별하는 공통 제품번호 규칙을 정합니다."},{"id":"s2-2","label":"도금종류 코드 기준 확정","detail":"MES·ACPT·JIG·시뮬레이터가 같은 도금명을 사용하도록 통일합니다."},{"id":"s2-3","label":"LOT_ID 기준 확정","detail":"생산 LOT를 프로그램 간 연결할 수 있는 형식으로 정합니다."},{"id":"s2-4","label":"LINE_ID 기준 확정","detail":"생산 라인 식별 규칙을 정합니다."},{"id":"s2-5","label":"TANK_ID 기준 확정","detail":"ACPT 탱크 정보와 MES 생산/분석 데이터를 연결할 수 있도록 합니다."},{"id":"s2-6","label":"JIG_ID 기준 확정","detail":"지그 설계 결과와 실제 생산 사용 지그를 연결합니다."},{"id":"s2-7","label":"공통 필드명 / 단위 기준 문서화","detail":"두께, 면적, 전류, 시간, 온도 등 공유 데이터의 단위를 통일합니다."}]},
+{"id":"step3","title":"프로그램 간 데이터 전달 연결","shortTitle":"데이터 연동","summary":"중복 입력을 줄이고 MES의 작업정보가 각 전문 프로그램으로 전달되도록 연결합니다.","tasks":[
+{"id":"s3-1","label":"MES → ACPT 제품 / 공정 정보 전달","detail":"MES 작업에서 해당 제품과 도금종류를 ACPT가 바로 조회할 수 있게 합니다."},{"id":"s3-2","label":"MES → JIG 제품 / 수량 정보 전달","detail":"제품번호와 생산수량을 JIG 설계에서 다시 입력하지 않도록 합니다."},{"id":"s3-3","label":"MES → 시뮬레이터 제품 / 작업 조건 전달","detail":"제품, 요구두께, 작업수량 등 필요한 기본값을 전달합니다."},{"id":"s3-4","label":"JIG → 시뮬레이터 배치 / 간격 정보 전달","detail":"지그 설계 결과를 시뮬레이터 형상 조건으로 연결합니다."},{"id":"s3-5","label":"JIG / 시뮬레이터 결과 → MES 참조 연결","detail":"생산 작업에서 설계·예측 결과를 다시 확인할 수 있도록 연결합니다."},{"id":"s3-6","label":"iPhone / PC 연동 흐름 점검","detail":"각 화면 이동과 데이터 전달이 모바일과 PC에서 동일하게 동작하는지 확인합니다."}]},
+{"id":"step4","title":"실제 생산 FLOW 연결","shortTitle":"생산 FLOW 완성","summary":"하나의 MES 작업지시가 설계·예측·기술검토·생산·결과저장까지 이어지는 흐름을 완성합니다.","tasks":[
+{"id":"s4-1","label":"MES 작업지시에서 제품 / 도금 / 요구두께 불러오기","detail":"생산 시작점의 기준 데이터를 확정합니다."},{"id":"s4-2","label":"JIG 배치 / 수량 검토 연결","detail":"해당 작업에 사용할 지그와 제품 배치를 검토합니다."},{"id":"s4-3","label":"도금 두께 시뮬레이션 사전 검증 연결","detail":"생산 전에 예상 두께와 편차를 확인합니다."},{"id":"s4-4","label":"ACPT 공정 / 탱크 / 기술조건 확인 연결","detail":"생산 전 적용 기술조건과 주의사항을 검토합니다."},{"id":"s4-5","label":"실제 생산 실행 단계 정의","detail":"검토가 끝난 조건을 기준으로 실제 생산을 진행합니다."},{"id":"s4-6","label":"MES 실제 생산결과 저장 구조 확인","detail":"전류·시간·용액분석·두께·불량·원가 등 실제 결과를 기록합니다."},{"id":"s4-7","label":"1개 실제 품목으로 전체 FLOW 시험","detail":"하나의 품목을 처음부터 끝까지 통과시켜 끊기는 구간을 확인합니다."}]},
+{"id":"step5","title":"예측값과 실제값 비교 데이터 축적","shortTitle":"데이터 축적 / 검증","summary":"시뮬레이션·설계·기술검토 결과와 실제 생산 결과를 비교해 개선 가능한 데이터를 쌓습니다.","tasks":[
+{"id":"s5-1","label":"예상두께 ↔ 실제두께 비교","detail":"평균뿐 아니라 가능하면 위치별 두께 편차도 함께 비교합니다."},{"id":"s5-2","label":"예상조건 ↔ 실제 작업조건 비교","detail":"전류·시간·온도 등 실제 생산 편차를 기록합니다."},{"id":"s5-3","label":"JIG별 생산결과 비교","detail":"같은 제품에서 지그별 품질과 두께 차이를 확인합니다."},{"id":"s5-4","label":"LINE / TANK별 생산결과 비교","detail":"동일 제품의 라인·탱크 차이를 분석할 수 있게 축적합니다."},{"id":"s5-5","label":"불량 발생조건과 원인 연결","detail":"불량유형, 당시 조건, 조치결과를 함께 저장합니다."},{"id":"s5-6","label":"시뮬레이터 보정 기준 수립","detail":"실측과 예측 차이를 근거로 모델 보정 필요 여부를 판단합니다."},{"id":"s5-7","label":"ACPT 기술지식에 실제 사례 반영 기준 수립","detail":"검증된 현장 결과만 ACPT 기술자료에 누적하도록 기준을 정합니다."}]},
+{"id":"step6","title":"통합 AI 분석 기능 추가","shortTitle":"통합 AI 분석","summary":"충분히 연결된 데이터와 검증 결과를 기반으로 조회·비교·원인분석·추천 기능을 추가합니다.","tasks":[
+{"id":"s6-1","label":"4개 프로그램 통합 조회 기능","detail":"한 질문에서 MES·ACPT·JIG·시뮬레이터 정보를 함께 검색합니다."},{"id":"s6-2","label":"현재 LOT / 제품 / 탱크 문맥 자동 인식","detail":"사용자가 작업을 지정하면 관련 데이터를 묶어서 분석하도록 합니다."},{"id":"s6-3","label":"과거 유사 작업 / 불량 사례 비교","detail":"동일 제품·지그·탱크·불량유형의 과거 사례를 찾아 비교합니다."},{"id":"s6-4","label":"문제 원인 우선순위 분석","detail":"욕조성만 보지 않고 접점·지그·전류분포·유동·공정조건을 순서대로 판단합니다."},{"id":"s6-5","label":"라인 관리자 조치 권고 기능","detail":"확인순서와 조치안을 제안하되 실제 변경은 관리자 판단으로 진행합니다."},{"id":"s6-6","label":"AI 권고 결과 검증 / 피드백 기록","detail":"권고가 맞았는지 생산 결과를 통해 다시 검증합니다."},{"id":"s6-7","label":"iPhone에서 통합 조회 / 진행상태 사용성 검증","detail":"현장에서 필요한 핵심 기능이 모바일로 충분히 동작하는지 확인합니다."}]}
+]}
+</script>
 <script>
-/* CALC_CORE_START */
-function calculateSurfaceAreaGroups(groups) {
-  const toFinite = (value) => {
-    const number = Number(value);
-    return Number.isFinite(number) ? number : 0;
-  };
-  const magnitude = (value) => Math.abs(toFinite(value));
-  const qtyMagnitude = (value) => {
-    if (value === '' || value === null || value === undefined) return 1;
-    return Math.abs(toFinite(value));
-  };
-  const itemSign = (values) => values.some(value => toFinite(value) < 0) ? -1 : 1;
+(function(){
+'use strict';
+var STORAGE_KEY='cdf-flowchart-v2';
+var dataEl=document.getElementById('defaultData');
+var DEFAULT_MODEL=JSON.parse(dataEl.textContent||dataEl.innerText||'{"stages":[]}');
+var model=loadModel();
+var activeIndex=0;
+var modalMode='';
+var modalStageId='';
+var modalTaskId='';
 
-  const cylinders = Array.isArray(groups.cylinders) ? groups.cylinders : [];
-  const circles = Array.isArray(groups.circles) ? groups.circles : [];
-  const boxes = Array.isArray(groups.boxes) ? groups.boxes : [];
+function clone(v){return JSON.parse(JSON.stringify(v));}
+function id(prefix){return prefix+'-'+Date.now()+'-'+Math.floor(Math.random()*1000000);}
+function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function loadModel(){try{var raw=localStorage.getItem(STORAGE_KEY);if(raw){var parsed=JSON.parse(raw);if(parsed&&parsed.stages&&Object.prototype.toString.call(parsed.stages)==='[object Array]')return parsed;}}catch(e){}return clone(DEFAULT_MODEL);}
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(model));}catch(e){}}
+function allTasks(){var a=[];for(var i=0;i<model.stages.length;i++){for(var j=0;j<model.stages[i].tasks.length;j++)a.push(model.stages[i].tasks[j]);}return a;}
+function taskDone(t){return !!t.done;}
+function stageProgress(s){if(!s.tasks.length)return 0;var n=0;for(var i=0;i<s.tasks.length;i++)if(taskDone(s.tasks[i]))n++;return Math.round(n*100/s.tasks.length);}
+function stageComplete(s){return s.tasks.length>0&&stageProgress(s)===100;}
+function unlocked(index){if(index===0)return true;for(var i=0;i<index;i++)if(!stageComplete(model.stages[i]))return false;return true;}
+function clamp(){if(activeIndex<0)activeIndex=0;if(activeIndex>=model.stages.length)activeIndex=Math.max(0,model.stages.length-1);}
+function overall(){var t=allTasks(),n=0;for(var i=0;i<t.length;i++)if(taskDone(t[i]))n++;return {done:n,total:t.length,pct:t.length?Math.round(n*100/t.length):0};}
 
-  const cylinderMm2 = cylinders.reduce((sum, item) => {
-    const sign = itemSign([item.diameter, item.height, item.qty]);
-    const area = magnitude(item.diameter) * 3.14 * magnitude(item.height) * qtyMagnitude(item.qty);
-    return sum + sign * area;
-  }, 0);
-
-  const circleMm2 = circles.reduce((sum, item) => {
-    const sign = itemSign([item.radius, item.qty]);
-    const radius = magnitude(item.radius);
-    const area = radius * radius * 3.14 * qtyMagnitude(item.qty);
-    return sum + sign * area;
-  }, 0);
-
-  const boxMm2 = boxes.reduce((sum, item) => {
-    const sign = itemSign([item.width, item.depth, item.height, item.qty]);
-    const width = magnitude(item.width);
-    const depth = magnitude(item.depth);
-    const height = magnitude(item.height);
-    const qty = qtyMagnitude(item.qty);
-    const area = 2 * (width * depth + width * height + depth * height) * qty;
-    return sum + sign * area;
-  }, 0);
-
-  const cylinderDm2 = cylinderMm2 / 10000;
-  const circleDm2 = circleMm2 / 10000;
-  const boxDm2 = boxMm2 / 10000;
-  const totalDm2 = cylinderDm2 + circleDm2 + boxDm2;
-
-  return { cylinderDm2, circleDm2, boxDm2, totalDm2 };
+function renderSummary(){var o=overall();document.getElementById('overallPercent').textContent=o.pct+'%';document.getElementById('overallCount').textContent=o.done+' / '+o.total+' 완료';document.getElementById('overallBar').style.width=o.pct+'%';var next='모든 단계가 완료되었습니다.';for(var i=0;i<model.stages.length;i++){if(!stageComplete(model.stages[i])){next='다음 작업: STEP '+(i+1)+' · '+model.stages[i].shortTitle;break;}}if(!model.stages.length)next='STEP을 신규등록하여 FLOW를 시작하세요.';document.getElementById('nextAction').textContent=next;}
+function renderFlow(){var box=document.getElementById('flow');if(!model.stages.length){box.innerHTML='<div class="empty"><strong>등록된 STEP이 없습니다.</strong>+ STEP 신규등록 버튼으로 시작하세요.</div>';return;}var h='';for(var i=0;i<model.stages.length;i++){var s=model.stages[i],p=stageProgress(s),done=0;for(var j=0;j<s.tasks.length;j++)if(s.tasks[j].done)done++;var cls='stage'+(i===activeIndex?' active':'')+(!unlocked(i)?' locked':'')+(stageComplete(s)?' complete':'');h+='<article class="'+cls+'" data-index="'+i+'"><button class="card-delete" type="button" data-delete-stage="'+esc(s.id)+'">삭제</button><span class="step">STEP '+(i+1)+'</span><h3>'+esc(s.shortTitle)+'</h3><p>'+esc(s.summary)+'</p><div class="mini"><div class="mini-row"><span>'+p+'%</span><span>'+done+'/'+s.tasks.length+'</span></div><div class="mini-bar"><i style="width:'+p+'%"></i></div></div></article>';}box.innerHTML=h;var cards=box.querySelectorAll('.stage');for(var k=0;k<cards.length;k++)cards[k].addEventListener('click',function(e){if(e.target.getAttribute('data-delete-stage'))return;activeIndex=parseInt(this.getAttribute('data-index'),10)||0;render();});var dels=box.querySelectorAll('[data-delete-stage]');for(var d=0;d<dels.length;d++)dels[d].addEventListener('click',function(e){e.stopPropagation();deleteStage(this.getAttribute('data-delete-stage'));});}
+function renderDetail(){var box=document.getElementById('detail');clamp();if(!model.stages.length){box.innerHTML='<div class="empty"><strong>STEP을 신규등록하세요.</strong>새로운 개발 단계를 추가할 수 있습니다.</div>';return;}var s=model.stages[activeIndex],p=stageProgress(s),isUnlocked=unlocked(activeIndex);var h='<div class="detail-head"><div class="detail-head-row"><div><div class="detail-step">STEP '+(activeIndex+1)+'</div><h3>'+esc(s.title)+'</h3><p class="detail-desc">'+esc(s.summary)+'</p></div><div class="detail-percent">'+p+'%</div></div><div class="detail-actions"><button id="addTaskBtn" class="btn btn-secondary" type="button">+ 체크리스트 신규등록</button><button id="editStageBtn" class="btn btn-secondary" type="button">STEP 수정</button><button id="deleteStageBtn" class="btn btn-danger" type="button">STEP 삭제</button></div></div>';if(!isUnlocked)h+='<div class="locked-note">이전 STEP 완료 전까지 체크는 잠깁니다. STEP/체크리스트 추가·수정·삭제는 가능합니다.</div>';h+='<ul class="checklist">';if(!s.tasks.length)h+='<li class="empty"><strong>체크리스트가 없습니다.</strong>체크리스트 신규등록 버튼으로 추가하세요.</li>';for(var i=0;i<s.tasks.length;i++){var t=s.tasks[i];h+='<li class="check"><label><input type="checkbox" data-task="'+esc(t.id)+'" '+(t.done?'checked ':'')+(!isUnlocked?'disabled ':'')+'><span class="copy"><strong>'+esc(t.label)+'</strong><span>'+esc(t.detail)+'</span></span></label><span class="task-actions"><button class="task-edit" type="button" data-edit-task="'+esc(t.id)+'">수정</button><button class="task-delete" type="button" data-delete-task="'+esc(t.id)+'">삭제</button></span></li>';}h+='</ul>';box.innerHTML=h;document.getElementById('addTaskBtn').addEventListener('click',function(){openModal('task',s.id,'');});document.getElementById('editStageBtn').addEventListener('click',function(){openModal('edit-stage',s.id,'');});document.getElementById('deleteStageBtn').addEventListener('click',function(){deleteStage(s.id);});var checks=box.querySelectorAll('[data-task]');for(var c=0;c<checks.length;c++)checks[c].addEventListener('change',function(){var task=findTask(this.getAttribute('data-task'));if(task){task.done=this.checked;save();render();}});var te=box.querySelectorAll('[data-edit-task]');for(var e=0;e<te.length;e++)te[e].addEventListener('click',function(){openModal('edit-task',s.id,this.getAttribute('data-edit-task'));});var td=box.querySelectorAll('[data-delete-task]');for(var q=0;q<td.length;q++)td[q].addEventListener('click',function(){deleteTask(s.id,this.getAttribute('data-delete-task'));});}
+function render(){renderSummary();renderFlow();renderDetail();}
+function findStage(stageId){for(var i=0;i<model.stages.length;i++)if(model.stages[i].id===stageId)return model.stages[i];return null;}
+function findTask(taskId){for(var i=0;i<model.stages.length;i++)for(var j=0;j<model.stages[i].tasks.length;j++)if(model.stages[i].tasks[j].id===taskId)return model.stages[i].tasks[j];return null;}
+function deleteStage(stageId){var idx=-1;for(var i=0;i<model.stages.length;i++)if(model.stages[i].id===stageId){idx=i;break;}if(idx<0)return;if(!confirm('STEP '+(idx+1)+' · '+model.stages[idx].title+' 을(를) 삭제하시겠습니까?\n체크리스트도 함께 삭제됩니다.'))return;model.stages.splice(idx,1);if(activeIndex>=idx&&activeIndex>0)activeIndex--;clamp();save();render();}
+function deleteTask(stageId,taskId){var s=null;for(var i=0;i<model.stages.length;i++)if(model.stages[i].id===stageId)s=model.stages[i];if(!s)return;for(var j=0;j<s.tasks.length;j++)if(s.tasks[j].id===taskId){if(!confirm('체크리스트 “'+s.tasks[j].label+'” 을(를) 삭제하시겠습니까?'))return;s.tasks.splice(j,1);save();render();return;}}
+function openModal(mode,stageId,taskId){
+modalMode=mode;modalStageId=stageId||'';modalTaskId=taskId||'';
+var isStage=(mode==='stage'||mode==='edit-stage');
+var isEdit=(mode==='edit-stage'||mode==='edit-task');
+document.getElementById('modalTitle').textContent=isStage?(isEdit?'STEP 수정':'STEP 신규등록'):(isEdit?'체크리스트 수정':'체크리스트 신규등록');
+document.getElementById('nameLabel').textContent=isStage?'STEP 이름':'체크리스트 이름';
+document.getElementById('descLabel').textContent=isStage?'STEP 설명':'세부 설명';
+document.getElementById('modalSubmit').textContent=isEdit?'수정 저장':'등록';
+var name='',desc='';
+if(mode==='edit-stage'){var st=findStage(modalStageId);if(st){name=st.shortTitle||st.title||'';desc=st.summary||'';}}
+if(mode==='edit-task'){var tk=findTask(modalTaskId);if(tk){name=tk.label||'';desc=tk.detail||'';}}
+document.getElementById('nameInput').value=name;document.getElementById('descInput').value=desc;
+var m=document.getElementById('modal');m.className='modal show';m.setAttribute('aria-hidden','false');setTimeout(function(){document.getElementById('nameInput').focus();},20);
 }
+function closeModal(){var m=document.getElementById('modal');m.className='modal';m.setAttribute('aria-hidden','true');modalMode='';modalStageId='';modalTaskId='';}
 
-function calculateSurfaceAreas(values) {
-  return calculateSurfaceAreaGroups({
-    cylinders: [{ diameter: values.diameter, height: values.height, qty: values.cylinderQty }],
-    circles: [{ radius: values.radius, qty: values.circleQty }],
-    boxes: [{ width: values.boxWidth, depth: values.boxDepth, height: values.boxHeight, qty: values.boxQty }]
-  });
-}
-/* CALC_CORE_END */
+document.getElementById('addStageBtn').addEventListener('click',function(){openModal('stage','','');});
+document.getElementById('modalClose').addEventListener('click',closeModal);
+document.getElementById('modalCancel').addEventListener('click',closeModal);
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.getElementById('modalForm').addEventListener('submit',function(e){e.preventDefault();var name=document.getElementById('nameInput').value.replace(/^\s+|\s+$/g,'');var desc=document.getElementById('descInput').value.replace(/^\s+|\s+$/g,'');if(!name)return;if(modalMode==='stage'){model.stages.push({id:id('stage'),title:name,shortTitle:name,summary:desc,tasks:[]});activeIndex=model.stages.length-1;}else if(modalMode==='task'){var addStage=findStage(modalStageId);if(addStage)addStage.tasks.push({id:id('task'),label:name,detail:desc,done:false});}else if(modalMode==='edit-stage'){var editStage=findStage(modalStageId);if(editStage){editStage.title=name;editStage.shortTitle=name;editStage.summary=desc;}}else if(modalMode==='edit-task'){var editTask=findTask(modalTaskId);if(editTask){editTask.label=name;editTask.detail=desc;}}save();closeModal();render();});
+document.getElementById('resetBtn').addEventListener('click',function(){if(!confirm('모든 체크 상태를 초기화하시겠습니까?\n추가한 STEP과 체크리스트는 유지됩니다.'))return;for(var i=0;i<model.stages.length;i++)for(var j=0;j<model.stages[i].tasks.length;j++)model.stages[i].tasks[j].done=false;activeIndex=0;save();render();});
 
-/* REPLENISHMENT_CORE_START */
-function convertLiquidKgToLiters(kg, specificGravity) {
-  const massKg = Number(kg);
-  const sg = Number(specificGravity);
-  if (!Number.isFinite(massKg) || massKg < 0 || !Number.isFinite(sg) || sg <= 0) return NaN;
-  return massKg / sg;
-}
-
-function calculateReplenishment(values) {
-  const blankResult = () => ({
-    tankVolumeL: 0, currentGpl: 0, targetGpl: 0, mode: 'invalid', status: '입력 확인',
-    wasteL: 0, pureWaterL: 0, chemicalL: 0, chemicalKg: 0, activeChemicalKg: 0,
-    inputChemicalKg: 0, inputChemicalL: 0, inputWasteL: 0, inputFinalVolumeL: 0, inputFinalGpl: 0,
-    dischargeMm: 0, finalVolumeL: 0, stockGpl: 0, error: ''
-  });
-  const toNumber = (value) => {
-    if (value === '' || value === null || value === undefined) return NaN;
-    const n = Number(value);
-    return Number.isFinite(n) ? n : NaN;
-  };
-  const positive = (value) => {
-    const n = toNumber(value);
-    return Number.isFinite(n) && n > 0 ? n : NaN;
-  };
-
-  const result = blankResult();
-  const tankMode = values && values.tankMode === 'dimensions' ? 'dimensions' : 'direct';
-  const widthMm = positive(values && values.tankWidthMm);
-  const depthMm = positive(values && values.tankDepthMm);
-  const heightMm = positive(values && values.liquidHeightMm);
-  let tankVolumeL = NaN;
-  if (tankMode === 'dimensions') {
-    if (Number.isFinite(widthMm) && Number.isFinite(depthMm) && Number.isFinite(heightMm)) {
-      tankVolumeL = widthMm * depthMm * heightMm / 1000000;
-    }
-  } else {
-    tankVolumeL = positive(values && values.tankVolumeL);
-  }
-
-  const currentGpl = toNumber(values && values.currentGpl);
-  const targetGpl = toNumber(values && values.targetGpl);
-  result.tankVolumeL = Number.isFinite(tankVolumeL) ? tankVolumeL : 0;
-  result.finalVolumeL = result.tankVolumeL;
-  result.currentGpl = Number.isFinite(currentGpl) ? currentGpl : 0;
-  result.targetGpl = Number.isFinite(targetGpl) ? targetGpl : 0;
-
-  if (!Number.isFinite(tankVolumeL) || tankVolumeL <= 0) {
-    result.error = '탱크 용량을 입력하거나 유효한 탱크 치수를 입력하십시오.';
-    return result;
-  }
-  if (!Number.isFinite(currentGpl) || !Number.isFinite(targetGpl) || currentGpl < 0 || targetGpl < 0) {
-    result.error = '현재 농도와 목표 농도를 g/L 단위로 입력하십시오.';
-    return result;
-  }
-
-  const litersPerMm = Number.isFinite(widthMm) && Number.isFinite(depthMm)
-    ? widthMm * depthMm / 1000000
-    : 0;
-  const setDischarge = () => {
-    result.dischargeMm = litersPerMm > 0 && result.wasteL > 0 ? result.wasteL / litersPerMm : 0;
-  };
-
-  if (Math.abs(currentGpl - targetGpl) < 1e-12) {
-    result.mode = 'none';
-    result.status = '조정 없음';
-    result.error = '';
-    return result;
-  }
-
-  if (currentGpl > targetGpl) {
-    result.mode = 'dilution';
-    result.status = '희석 필요';
-    result.wasteL = tankVolumeL * (1 - targetGpl / currentGpl);
-    result.pureWaterL = result.wasteL;
-    result.finalVolumeL = tankVolumeL;
-    setDischarge();
-    result.error = '';
-    return result;
-  }
-
-  const chemicalType = values && values.chemicalType === 'liquid' ? 'liquid' : 'solid';
-  if (chemicalType === 'solid') {
-    let purityPct = toNumber(values && values.solidPurityPct);
-    if (!Number.isFinite(purityPct)) purityPct = 100;
-    if (purityPct <= 0 || purityPct > 100) {
-      result.error = '고형약품 순도는 0 초과 100 이하로 입력하십시오.';
-      return result;
-    }
-    const activeKg = (targetGpl - currentGpl) * tankVolumeL / 1000;
-    result.mode = 'solid';
-    result.status = '고형약품 보충';
-    result.activeChemicalKg = activeKg;
-    result.chemicalKg = activeKg / (purityPct / 100);
-    result.finalVolumeL = tankVolumeL;
-    result.error = '';
-    return result;
-  }
-
-  const concentrationMode = values && values.liquidConcentrationMode === 'percent' ? 'percent' : 'gpl';
-  const sg = positive(values && values.specificGravity);
-  if (!Number.isFinite(sg)) {
-    result.error = '액상약품의 비중을 입력하십시오.';
-    return result;
-  }
-
-  const liquidSupplyUnit = values && values.liquidSupplyUnit === 'kg' ? 'kg' : 'liter';
-  if (liquidSupplyUnit === 'kg') {
-    const inputKg = toNumber(values && values.liquidInputKg);
-    if (Number.isFinite(inputKg) && inputKg >= 0) {
-      result.inputChemicalKg = inputKg;
-      result.inputChemicalL = convertLiquidKgToLiters(inputKg, sg);
-    }
-  }
-
-  let stockGpl = NaN;
-  if (concentrationMode === 'percent') {
-    const wtPct = toNumber(values && values.liquidWtPct);
-    if (!Number.isFinite(wtPct) || wtPct <= 0 || wtPct > 100) {
-      result.error = '액상 원액 농도(wt%)를 0 초과 100 이하로 입력하십시오.';
-      return result;
-    }
-    stockGpl = sg * 1000 * (wtPct / 100);
-  } else {
-    stockGpl = positive(values && values.liquidStockGpl);
-    if (!Number.isFinite(stockGpl)) {
-      result.error = '액상 원액의 유효농도(g/L)를 입력하십시오.';
-      return result;
-    }
-  }
-  result.stockGpl = stockGpl;
-
-  if (!(stockGpl > targetGpl)) {
-    result.error = '원액 유효농도는 목표 농도보다 높아야 합니다.';
-    return result;
-  }
-
-  const volumeMode = values && values.liquidVolumeMode === 'grow' ? 'grow' : 'constant';
-
-  if (liquidSupplyUnit === 'kg' && result.inputChemicalL > 0) {
-    const appliedL = result.inputChemicalL;
-    if (volumeMode === 'constant') {
-      if (appliedL <= tankVolumeL) {
-        result.inputWasteL = appliedL;
-        result.inputFinalVolumeL = tankVolumeL;
-        result.inputFinalGpl = (currentGpl * (tankVolumeL - appliedL) + stockGpl * appliedL) / tankVolumeL;
-      }
-    } else {
-      result.inputWasteL = 0;
-      result.inputFinalVolumeL = tankVolumeL + appliedL;
-      result.inputFinalGpl = (currentGpl * tankVolumeL + stockGpl * appliedL) / result.inputFinalVolumeL;
-    }
-  }
-
-  let chemicalL = 0;
-  if (volumeMode === 'constant') {
-    chemicalL = tankVolumeL * (targetGpl - currentGpl) / (stockGpl - currentGpl);
-    result.wasteL = chemicalL;
-    result.finalVolumeL = tankVolumeL;
-    result.status = '액상약품 보충 · 정용량';
-  } else {
-    chemicalL = tankVolumeL * (targetGpl - currentGpl) / (stockGpl - targetGpl);
-    result.wasteL = 0;
-    result.finalVolumeL = tankVolumeL + chemicalL;
-    result.status = '액상약품 보충 · 용량 증가';
-  }
-  if (!Number.isFinite(chemicalL) || chemicalL < 0) {
-    result.error = '입력 조건으로 액상 보충량을 계산할 수 없습니다.';
-    return result;
-  }
-
-  result.mode = 'liquid';
-  result.chemicalL = chemicalL;
-  result.chemicalKg = chemicalL * sg;
-  result.pureWaterL = 0;
-  setDischarge();
-  result.error = '';
-  return result;
-}
-/* REPLENISHMENT_CORE_END */
-
-
-
-(function initializeTabsAndReplenishment(){
-  const tabs = [...document.querySelectorAll('[data-tab-target]')];
-  const surfacePanel = document.getElementById('surfacePanel');
-  const replenishmentPanel = document.getElementById('replenishmentPanel');
-  const panels = { surface: surfacePanel, replenishment: replenishmentPanel };
-
-  const switchTab = (name) => {
-    tabs.forEach(tab => {
-      const active = tab.dataset.tabTarget === name;
-      tab.classList.toggle('active', active);
-      tab.setAttribute('aria-selected', active ? 'true' : 'false');
-    });
-    Object.entries(panels).forEach(([key,panel]) => panel.classList.toggle('active', key === name));
-  };
-  tabs.forEach(tab => tab.addEventListener('click', () => switchTab(tab.dataset.tabTarget)));
-
-  const $ = id => document.getElementById(id);
-  const tankModeInputs = [...document.querySelectorAll('input[name="tankMode"]')];
-  const chemicalTypeInputs = [...document.querySelectorAll('input[name="chemicalType"]')];
-  const liquidConcentrationModeInputs = [...document.querySelectorAll('input[name="liquidConcentrationMode"]')];
-  const liquidSupplyUnitInputs = [...document.querySelectorAll('input[name="liquidSupplyUnit"]')];
-  const liquidVolumeModeInputs = [...document.querySelectorAll('input[name="liquidVolumeMode"]')];
-  const replInputs = [...replenishmentPanel.querySelectorAll('input')];
-
-  const checkedValue = (name, fallback) => {
-    const checked = document.querySelector(`input[name="${name}"]:checked`);
-    return checked ? checked.value : fallback;
-  };
-  const fmt = (value, digits=2) => Number.isFinite(value) ? value.toFixed(digits) : (0).toFixed(digits);
-
-  const updateConditionalUI = () => {
-    const tankMode = checkedValue('tankMode','direct');
-    $('directTankFields').classList.toggle('hidden', tankMode !== 'direct');
-    $('dimensionTankFields').classList.toggle('hidden', tankMode !== 'dimensions');
-
-    const chemicalType = checkedValue('chemicalType','solid');
-    $('solidChemicalFields').classList.toggle('hidden', chemicalType !== 'solid');
-    $('liquidChemicalFields').classList.toggle('hidden', chemicalType !== 'liquid');
-
-    const concentrationMode = checkedValue('liquidConcentrationMode','gpl');
-    $('liquidGplFields').classList.toggle('hidden', concentrationMode !== 'gpl');
-    $('liquidPercentFields').classList.toggle('hidden', concentrationMode !== 'percent');
-
-    const supplyUnit = checkedValue('liquidSupplyUnit','liter');
-    $('liquidKgSupplyFields').classList.toggle('hidden', supplyUnit !== 'kg');
-  };
-
-  const readValues = () => {
-    const tankMode = checkedValue('tankMode','direct');
-    const concentrationMode = checkedValue('liquidConcentrationMode','gpl');
-    const specificGravity = concentrationMode === 'percent' ? $('specificGravityPercent').value : $('specificGravityGpl').value;
-    return {
-      tankMode,
-      tankVolumeL: $('tankVolumeL').value,
-      tankWidthMm: tankMode === 'dimensions' ? $('tankWidthMm').value : $('directTankWidthMm').value,
-      tankDepthMm: tankMode === 'dimensions' ? $('tankDepthMm').value : $('directTankDepthMm').value,
-      liquidHeightMm: $('liquidHeightMm').value,
-      currentGpl: $('currentGpl').value,
-      targetGpl: $('targetGpl').value,
-      chemicalType: checkedValue('chemicalType','solid'),
-      solidPurityPct: $('solidPurityPct').value,
-      liquidConcentrationMode: concentrationMode,
-      liquidStockGpl: $('liquidStockGpl').value,
-      liquidWtPct: $('liquidWtPct').value,
-      specificGravity,
-      liquidSupplyUnit: checkedValue('liquidSupplyUnit','liter'),
-      liquidInputKg: $('liquidInputKg').value,
-      liquidVolumeMode: checkedValue('liquidVolumeMode','constant')
-    };
-  };
-
-  const render = () => {
-    updateConditionalUI();
-    const values = readValues();
-    const result = calculateReplenishment(values);
-    const directV = Number(values.tankVolumeL);
-    $('directVolumeEcho').textContent = `${Number.isFinite(directV) && directV > 0 ? fmt(directV) : '0.00'} L`;
-    const w = Number($('tankWidthMm').value), d = Number($('tankDepthMm').value), h = Number($('liquidHeightMm').value);
-    const dimensionV = [w,d,h].every(v => Number.isFinite(v) && v > 0) ? w*d*h/1000000 : 0;
-    $('computedTankVolume').textContent = `${fmt(dimensionV)} L`;
-    const sgPct = Number($('specificGravityPercent').value), wt = Number($('liquidWtPct').value);
-    const converted = Number.isFinite(sgPct) && sgPct > 0 && Number.isFinite(wt) && wt > 0 ? sgPct*1000*(wt/100) : 0;
-    $('convertedStockGpl').textContent = `${fmt(converted)} g/L`;
-    const inputKg = Number($('liquidInputKg').value);
-    const convertedInputL = convertLiquidKgToLiters(inputKg, Number(values.specificGravity));
-    $('convertedLiquidVolume').textContent = Number.isFinite(convertedInputL) ? `${fmt(convertedInputL)} L` : '0.00 L';
-
-    $('replTankVolumeResult').textContent = `${fmt(result.tankVolumeL)} L`;
-    $('replFinalVolumeResult').textContent = `${fmt(result.finalVolumeL)} L`;
-    $('wasteResult').textContent = `${fmt(result.wasteL)} L`;
-    $('pureWaterResult').textContent = `${fmt(result.pureWaterL)} L`;
-    $('chemicalLResult').textContent = `${fmt(result.chemicalL)} L`;
-    $('chemicalKgResult').textContent = `${fmt(result.chemicalKg,3)} kg`;
-    $('dischargeMmResult').textContent = result.dischargeMm > 0 ? `${fmt(result.dischargeMm,1)} mm` : '—';
-    $('stockGplResult').textContent = result.stockGpl > 0 ? `${fmt(result.stockGpl)} g/L` : '—';
-    const hasKgInput = values.liquidSupplyUnit === 'kg' && $('liquidInputKg').value !== '' && Number.isFinite(result.inputChemicalL);
-    $('inputChemicalKgResult').textContent = hasKgInput ? `${fmt(result.inputChemicalKg,3)} kg` : '—';
-    $('inputChemicalLResult').textContent = hasKgInput ? `${fmt(result.inputChemicalL)} L` : '—';
-    $('inputWasteResult').textContent = hasKgInput ? `${fmt(result.inputWasteL)} L` : '—';
-    $('inputFinalVolumeResult').textContent = hasKgInput && result.inputFinalVolumeL > 0 ? `${fmt(result.inputFinalVolumeL)} L` : '—';
-    $('inputFinalGplResult').textContent = hasKgInput && result.inputFinalGpl > 0 ? `${fmt(result.inputFinalGpl)} g/L` : '—';
-    $('replModeLabel').textContent = result.error ? '입력 확인' : result.status;
-    $('replMessage').classList.toggle('error', !!result.error);
-    if (result.error) {
-      $('replMessage').textContent = result.error;
-    } else if (result.mode === 'dilution') {
-      $('replMessage').textContent = '현재 농도가 목표보다 높습니다. 계산된 양만큼 폐수 후 동일량의 순수를 보충하십시오.';
-    } else if (result.mode === 'solid') {
-      $('replMessage').textContent = `목표 농도까지 필요한 유효성분은 ${fmt(result.activeChemicalKg,3)} kg입니다. 입력 순도를 반영한 실제 고형약품량을 표시했습니다.`;
-    } else if (result.mode === 'liquid') {
-      const baseMessage = values.liquidVolumeMode === 'constant'
-        ? '정용량 유지 기준입니다. 표시된 폐수량을 먼저 배출한 뒤 같은 부피의 액상약품을 투입하십시오.'
-        : '용량 증가 허용 기준입니다. 폐수 없이 표시된 액상약품을 추가하며 최종 예상 용량이 증가합니다.';
-      const kgMessage = values.liquidSupplyUnit === 'kg' && $('liquidInputKg').value !== '' && Number.isFinite(result.inputChemicalL)
-        ? ` 입력한 ${fmt(result.inputChemicalKg,3)} kg은 비중 기준 ${fmt(result.inputChemicalL)} L이며, 선택한 투입 방식 적용 후 예상 농도는 ${result.inputFinalGpl > 0 ? fmt(result.inputFinalGpl) + ' g/L' : '계산 불가'}입니다.`
-        : '';
-      $('replMessage').textContent = baseMessage + kgMessage;
-    } else if (result.mode === 'none') {
-      $('replMessage').textContent = '현재 농도와 목표 농도가 같습니다. 조정이 필요하지 않습니다.';
-    }
-  };
-
-  [...tankModeInputs,...chemicalTypeInputs,...liquidConcentrationModeInputs,...liquidSupplyUnitInputs,...liquidVolumeModeInputs].forEach(input => input.addEventListener('change', render));
-  replInputs.forEach(input => {
-    input.addEventListener('input', render);
-    input.addEventListener('change', render);
-  });
-
-  $('replenishmentResetButton').addEventListener('click', () => {
-    replenishmentPanel.querySelectorAll('input[type="number"]').forEach(input => { input.value = ''; });
-    document.querySelector('input[name="tankMode"][value="direct"]').checked = true;
-    document.querySelector('input[name="chemicalType"][value="solid"]').checked = true;
-    document.querySelector('input[name="liquidConcentrationMode"][value="gpl"]').checked = true;
-    document.querySelector('input[name="liquidSupplyUnit"][value="liter"]').checked = true;
-    document.querySelector('input[name="liquidVolumeMode"][value="constant"]').checked = true;
-    render();
-    $('tankVolumeL').focus();
-  });
-
-  updateConditionalUI();
-  render();
-})();
-
-
-(function initializeCalculator(){
-  const groupNames = ['cylinder', 'circle', 'box'];
-  const cylinderResult = document.getElementById('cylinderResult');
-  const circleResult = document.getElementById('circleResult');
-  const boxResult = document.getElementById('boxResult');
-  const totalResult = document.getElementById('totalResult');
-  const statusLine = document.getElementById('statusLine');
-  const resetButton = document.getElementById('resetButton');
-
-  const safeFixed = (value) => Number.isFinite(value) ? value.toFixed(4) : '0.0000';
-  const getGroup = (name) => document.querySelector(`[data-group="${name}"]`);
-  const getRows = (name) => [...getGroup(name).querySelectorAll('.entry-row')];
-
-  const readRow = (row) => Object.fromEntries(
-    [...row.querySelectorAll('[data-field]')].map(input => [input.dataset.field, input.value])
-  );
-
-  const readGroups = () => ({
-    cylinders: getRows('cylinder').map(readRow),
-    circles: getRows('circle').map(readRow),
-    boxes: getRows('box').map(readRow)
-  });
-
-  const updateControls = (name) => {
-    const rows = getRows(name);
-    rows.forEach((row, index) => {
-      const label = row.querySelector('.entry-label');
-      if (label) label.textContent = `항목 ${index + 1}`;
-    });
-    const removeButton = document.querySelector(`[data-remove="${name}"]`);
-    if (removeButton) removeButton.disabled = rows.length <= 1;
-  };
-
-  const render = () => {
-    const result = calculateSurfaceAreaGroups(readGroups());
-    cylinderResult.innerHTML = `${safeFixed(result.cylinderDm2)} <small>dm²</small>`;
-    circleResult.innerHTML = `${safeFixed(result.circleDm2)} <small>dm²</small>`;
-    boxResult.innerHTML = `${safeFixed(result.boxDm2)} <small>dm²</small>`;
-    totalResult.innerHTML = `${safeFixed(result.totalDm2)}<small>dm²</small>`;
-    const anyInput = [...document.querySelectorAll('[data-field]')].some(input =>
-      input.dataset.field === 'qty' ? !['', '1'].includes(input.value.trim()) : input.value.trim() !== ''
-    );
-    statusLine.innerHTML = `<span class="mini-dot"></span><span>${anyInput ? '입력값이 실시간으로 자동 계산되었습니다.' : '값을 입력하면 결과가 자동으로 계산됩니다.'}</span>`;
-  };
-
-  const attachRowEvents = (row) => {
-    row.querySelectorAll('[data-field]').forEach(input => {
-      input.addEventListener('input', render);
-      input.addEventListener('change', render);
-    });
-  };
-
-  const addRow = (name) => {
-    const group = getGroup(name);
-    const source = getRows(name)[0];
-    const clone = source.cloneNode(true);
-    clone.querySelectorAll('[data-field]').forEach(input => {
-      input.value = '';
-      input.removeAttribute('id');
-    });
-    group.appendChild(clone);
-    attachRowEvents(clone);
-    updateControls(name);
-    render();
-    const firstInput = clone.querySelector('[data-field]');
-    if (firstInput) firstInput.focus();
-  };
-
-  const removeRow = (name) => {
-    const rows = getRows(name);
-    if (rows.length <= 1) return;
-    rows[rows.length - 1].remove();
-    updateControls(name);
-    render();
-  };
-
-  groupNames.forEach(name => {
-    getRows(name).forEach(attachRowEvents);
-    document.querySelector(`[data-add="${name}"]`).addEventListener('click', () => addRow(name));
-    document.querySelector(`[data-remove="${name}"]`).addEventListener('click', () => removeRow(name));
-    updateControls(name);
-  });
-
-  resetButton.addEventListener('click', () => {
-    groupNames.forEach(name => {
-      const rows = getRows(name);
-      rows.slice(1).forEach(row => row.remove());
-      getRows(name)[0].querySelectorAll('[data-field]').forEach(input => {
-        input.value = '';
-      });
-      updateControls(name);
-    });
-    render();
-    const firstInput = getGroup('cylinder').querySelector('[data-field]');
-    if (firstInput) firstInput.focus();
-  });
-
-  render();
-
-  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
-    navigator.serviceWorker.register('./sw.js?v=114', { updateViaCache: 'none' })
-      .then(registration => registration.update())
-      .catch(() => {});
-  }
+/* C.D.F 화면 아이콘: GitHub의 CDF_ICON.png와 동일 이미지를 페이지에서도 사용 */
+document.getElementById('brandIcon').onerror=function(){this.style.display='none';this.parentNode.innerHTML='<div style="height:100%;display:grid;place-items:center;color:white;font-weight:900;font-size:17px">C.D.F</div>';};
+render();
 })();
 </script>
 </body>
